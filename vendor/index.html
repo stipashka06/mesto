@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Практическая работа по веб-програмированию в школе Яндекс Практикум" />
   <meta name="keyword"
-    content="Яндекс Практикум, веб-програмирование, Место, Mesto, Жак-Ив Кусто, исследователь океана, путешествия, travel" />
+    content="Яндекс Практикум, веб-програмирование, Место, Mesto, Жак-Ив Кусто, исследователь океана, путешествия , travel, " />
   <meta name="autor" content="Юровский Константин" />
   <title>Место</title>
   <link rel="stylesheet" href="./pages/index.css" />
@@ -17,28 +17,32 @@
     <div class="logo"></div>
     <div class="line"></div>
   </header>
+
   <main class="content">
+
     <section class="profile">
       <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Жак-Ив Кусто">
       <div class="profile__info">
-        <h1 class="profile__title">Жак-Ив Кусто</h1>
+        <p class="profile__title">Жак-Ив Кусто</p>
         <button class="profile__edit-button"></button>
-        <p class="profile__subtitle">Исследователь океана</p>
+        <p class="profile__subtitle">Исследователь океана </p>
       </div>
       <button class="profile__add-button"></button>
     </section>
-    <div class="popup-fade">
-      <form class="popup">
-        <label class="popup__title" for="name">Редактировать профиль</label>
-        <input class="popup__name intut input_style" id="name" type="text" placeholder="Жак-Ив Кусто">
-        <input class="popup__description intut input_style" id="name" type="text" placeholder="Исследователь океана">
-        <button class="popup__submit-button" type="submit">Сохранить</button>
-        <button class="popup__closs-button"></button>
-      </form>
-    </div>
+
+    <!-- <section class="">
+      <h2 class=""></h2>
+      <input class="" type="text">
+      <div class=""></div>
+      <input class="" type="text">
+      <div class=""></div>
+      <button class=""></button>
+      <button class=""></button>
+    </section> -->
+
     <section class="elements" aria-label="">
       <article class="element">
-        <img class="element__image" src="./images/photo-element-mountain-elbrus.jpg" alt="Гора Эльбрус на фоне равнины">
+        <img class="element__image" src="./images/photo-element-mountain-elbrus.jpg" alt="Гора Эльбрус на фоне ровнины">
         <h2 class="element__title">Гора Эльбрус</h2>
         <div class="element__like"></div>
       </article>
@@ -49,7 +53,8 @@
         <div class="element__like"></div>
       </article>
       <article class="element">
-        <img class="element__image" src="./images/photo-element-dombai.jpg" alt="Горный лесной покров в Донбайе">
+        <img class="element__image" src="./images/photo-element-dombai.jpg"
+          alt="Серая с осенним покровом леса гора на Донбае">
         <h2 class="element__title">Домбай</h2>
         <div class="element__like"></div>
       </article>
@@ -69,12 +74,15 @@
         <h2 class="element__title">Карачаево-Черкессия</h2>
         <div class="element__like"></div>
       </article>
+
     </section>
+
   </main>
+
   <footer class="footer">
-    <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+    <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
-  <script src="./pages/index.js"></script>
+  <script src="./pages/script.js"></script>
 </body>
 
 </html>
