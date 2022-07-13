@@ -195,14 +195,17 @@
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 0;
+}
+
+.popup-fade_opened {
+  display: flex;
 }
 
 .popup {  
   display: flex;
-  flex-direction: column;
   position: fixed;
   top: 195px;
   left: 50%;
@@ -224,6 +227,13 @@
     height: 322px;
     padding: 25px 22px;
   }
+}
+
+.popup__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 .popup__title {
