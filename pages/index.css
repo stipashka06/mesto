@@ -48,7 +48,7 @@
 
 @import url(../blocks/intut/intut.css);
 
-@import url(../blocks/intut/__style/input_style.css);
+@import url(../blocks/intut/_style/input_style.css);
 
 @import url(../blocks/elements/elements.css);
 
