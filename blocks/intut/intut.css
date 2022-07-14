@@ -3,7 +3,13 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   height: 37px;
 }
-
+.input::placeholder {
+  font-family: 'Inter', 'Times New Roman', 'Arial';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  color: black;
+}
 .intut:focus-visible {
   outline: none;
 }
