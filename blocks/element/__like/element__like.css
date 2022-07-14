@@ -1,0 +1,13 @@
+.element__like {
+  width: 19px;
+  height: 22px;
+  background: url(../../../images/logo/element-like.svg) center/contain no-repeat;
+}
+
+.element__like:hover {
+  background-image: url(../../../images/logo/element-like-hover.svg);
+}
+
+.element__like:active {
+  background-image: url(../../../images/logo/element-like-active.svg);
+}
