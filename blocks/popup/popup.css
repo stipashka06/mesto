@@ -1,7 +1,7 @@
 .popup {  
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: relative;
   top: 195px;
   left: 50%;
   transform: translate(-50%, 0);
@@ -10,7 +10,7 @@
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   padding: 34px 36px 37px;
-  margin: 0 auto;
+  margin: 0 ;
   box-sizing: border-box;
   z-index: 1;
 }
