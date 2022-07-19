@@ -6,7 +6,7 @@
   color: rgb(255, 255, 255);
   max-width: 294px;
   margin: 0;
-  padding: 0 0 0 30px;
+  padding-right: 18px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;  
@@ -14,9 +14,10 @@
 
 @media (max-width: 1023px) {
   .profile__title {
+    max-width: 189px;
     font-size: 27px;
     line-height: 1.21;
     text-align: center;
-    padding: 26px 0 0;
+    padding-right: 10px;
   }
 }

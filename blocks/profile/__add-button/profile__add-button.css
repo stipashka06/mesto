@@ -3,9 +3,6 @@
   width: 150px;
   height: 50px;
   padding: 0;
-  position: absolute;
-  top: auto;
-  right: 0;
   border: 2px solid rgb(255, 255, 255);
   border-radius: 2px;
   background: url(../../../images/logo/profile-add-button.svg) center/22px 22px no-repeat;
@@ -18,7 +15,6 @@
 
 @media (max-width: 1023px) {
   .profile__add-button {
-    position: relative;
     width: 282px;
     background-size: 16px 16px;
   }
