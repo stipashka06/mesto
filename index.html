@@ -15,7 +15,6 @@
 <body class="page">
   <header class="header">
     <div class="logo"></div>
-    <div class="line"></div>
   </header>
   <main class="content">
     <section class="profile">
@@ -23,61 +22,61 @@
       <div class="profile__info">
         <div class="profile__info-title">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button cursor" type="button"></button>
+          <button class="profile__edit-button cursor" type="button" aria-label="Редактировать"></button>
         </div>
         <p class="profile__subtitle">Исследователь океана</p>
       </div>
-      <button class="profile__add-button cursor" type="button"></button>
+      <button class="profile__add-button cursor" type="button" aria-label="Добавить"></button>
     </section>
-    <div class="popup-fade">
-      <div class="popup">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form">
-          <input class="popup__name intut" type="text" value="">
-          <input class="popup__description intut" type="text" value="">
-          <button class="popup__submit-button cursor" type="submit">Сохранить</button>
-        </form>
-        <button class="popup__closs-button cursor" type="button"></button>
-      </div>
-    </div>
     <section class="elements" aria-label="Достопримечательности России">
       <article class="element">
         <img class="element__image" src="./images/photo-element-mountain-elbrus.jpg" alt="Гора Эльбрус на фоне равнины">
         <h2 class="element__title">Гора Эльбрус</h2>
-        <div class="element__like cursor"></div>
+        <button class="element__like cursor" type="button" aria-label="Like"></button>
       </article>
       <article class="element">
         <img class="element__image" src="./images/photo-element-koktebel.jpg"
           alt="Синее море на фоне Коктебельских гор">
         <h2 class="element__title">Коктебель</h2>
-        <div class="element__like cursor"></div>
+        <button class="element__like cursor" type="button" aria-label="Like"></button>
       </article>
       <article class="element">
         <img class="element__image" src="./images/photo-element-dombai.jpg" alt="Горный лесной покров в Донбайе">
         <h2 class="element__title">Домбай</h2>
-        <div class="element__like cursor"></div>
+        <button class="element__like cursor" type="button" aria-label="Like"></button>
       </article>
       <article class="element">
         <img class="element__image" src="./images/photo-element-katsiveli.jpg" alt="Морская бухта в Кацивели">
         <h2 class="element__title">Кацивели</h2>
-        <div class="element__like cursor"></div>
+        <button class="element__like cursor" type="button" aria-label="Like"></button>
       </article>
       <article class="element">
         <img class="element__image" src="./images/photo-element-yalta.jpg" alt="Ласточкино Гнездо в Ялте">
         <h2 class="element__title">Ялта</h2>
-        <div class="element__like cursor"></div>
+        <button class="element__like cursor" type="button" aria-label="Like"></button>
       </article>
       <article class="element">
         <img class="element__image" src="./images/photo-element-karachay-cherkessia.jpg"
           alt="Заросший храм в Карачево-Черкессии">
         <h2 class="element__title">Карачаево-Черкессия</h2>
-        <div class="element__like cursor"></div>
+        <button class="element__like cursor" type="button" aria-label="Like"></button>
       </article>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
+  <div class="popup-fade">
+    <div class="popup">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form" name="info">
+        <input class="popup__input popup__input_name" type="text" value="" name="username">
+        <input class="popup__input popup__input_description" type="text" value="" name="userinfo">
+        <button class="popup__submit-button cursor" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__closs-button cursor" type="button" aria-label="Закрыть"></button>
+    </div>
+  </div>
   <script src="./scripts/index.js"></script>
 </body>
 

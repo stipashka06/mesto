@@ -4,10 +4,9 @@
   justify-content: center;
   align-items: center;
   width: 282px;
-  height: 361px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
-  padding-bottom: 31px;
+  padding-bottom: 25px;
   box-sizing: border-box;
   overflow: hidden;
 }

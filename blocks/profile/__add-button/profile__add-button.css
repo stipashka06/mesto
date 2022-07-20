@@ -6,6 +6,7 @@
   border: 2px solid rgb(255, 255, 255);
   border-radius: 2px;
   background: url(../../../images/logo/profile-add-button.svg) center/22px 22px no-repeat;
+  
 }
 
 .profile__add-button:hover {
