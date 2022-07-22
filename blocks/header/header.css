@@ -3,15 +3,14 @@
   flex-direction: column;
   justify-content: space-between;
   width: calc(100% - 31.25%);
-  min-height: 74px;
-  padding-top: 45px;
+  padding: 45px 0 41px;
   margin: 0 auto;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 @media (max-width: 767px) {
   .header {
     width: 100%;
-    min-height: 56px;
-    padding-top: 28px;
+    padding: 28px 0 31px;
   }
 }

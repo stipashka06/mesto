@@ -15,7 +15,6 @@
 
 @media (max-width: 767px) {
   .popup__closs-button  {  
-    transform: translate(-70%, 0);
     width: 52px;
     height: 52px;
     background-size: 20px 20px;

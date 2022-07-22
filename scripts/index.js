@@ -5,8 +5,8 @@ const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const titleElement = document.querySelector('.profile__title');
 const subtitleElement = document.querySelector('.profile__subtitle');
-const namePopupElement = document.querySelector('.popup__name');
-const subtitlePopupElement = document.querySelector('.popup__description');
+const namePopupElement = document.querySelector('.popup__input_type_name');
+const subtitlePopupElement = document.querySelector('.popup__input_type_description');
 
 function popupOpen() {
   popupElementEdit.classList.add('popup-fade_opened');
@@ -16,7 +16,6 @@ function popupOpen() {
 };
 
 editButton.addEventListener('click', popupOpen);
-
 
 addButton.addEventListener('click', popupOpen);
 
@@ -40,16 +39,6 @@ document.addEventListener('keydown', function (event) {
   }
 })
 
-const submitButton = document.querySelector('.popup__submit-button');
-
-submitButton.addEventListener('click', function (event) {
-  event.preventDefault();
-  clossPopup();
-  titleElement.textContent = namePopupElement.value;
-  subtitleElement.textContent = subtitlePopupElement.value;
-}
-);
-
 document.addEventListener('keydown', function (event) {
   if (event.which === 13) {
     clossPopup();
@@ -59,6 +48,9 @@ document.addEventListener('keydown', function (event) {
 const formElement = document.querySelector('.popup__form');
 function formSubmitHandler(evt) {
   evt.preventDefault();
+  clossPopup();
+  titleElement.textContent = namePopupElement.value;
+  subtitleElement.textContent = subtitlePopupElement.value;
 }
 formElement.addEventListener('submit', formSubmitHandler);
 
