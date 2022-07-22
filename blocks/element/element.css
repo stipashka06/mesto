@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  position: relative;
   width: 282px;
   height: 361px;
   background-color: rgb(255, 255, 255);

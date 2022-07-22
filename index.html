@@ -13,6 +13,7 @@
 </head>
 
 <body class="page">
+  <div></div>
   <header class="header">
     <div class="logo"></div>
     <div class="line"></div>
@@ -29,17 +30,6 @@
       </div>
       <button class="profile__add-button cursor" type="button"></button>
     </section>
-    <div class="popup-fade">
-      <div class="popup">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form">
-          <input class="popup__name intut" type="text" value="">
-          <input class="popup__description intut" type="text" value="">
-          <button class="popup__submit-button cursor" type="submit">Сохранить</button>
-        </form>
-        <button class="popup__closs-button cursor" type="button"></button>
-      </div>
-    </div>
     <section class="elements" aria-label="Достопримечательности России">
       <article class="element">
         <img class="element__image" src="./images/photo-element-mountain-elbrus.jpg" alt="Гора Эльбрус на фоне равнины">
@@ -78,6 +68,37 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
+
+  <div class="popup-fade popup-fade_type_edit">
+    <div class="popup">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form">
+        <input class="popup__name intut" type="text" value="">
+        <input class="popup__description intut" type="text" value="">
+        <button class="popup__submit-button cursor" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__closs-button cursor" type="button"></button>
+    </div>
+  </div>
+  <div class="popup-fade popup-fade_new-card">
+    <div class="popup">
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form">
+        <input class="popup__name intut" type="text" placeholder="Название" value="">
+        <input class="popup__description intut" type="text" placeholder="Ссылка на картинку" value="">
+        <button class="popup__submit-button cursor" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__closs-button cursor" type="button"></button>
+    </div>
+  </div>
+  <template class="template">
+    <article class="element">
+      <img class="element__image">
+      <h2 class="element__title"></h2>
+      <button class="element__like cursor" type="button" aria-label="Like"></button>
+      <button class="element__basket cursor" type="button" aria-label="Удалить"></button>
+    </article>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 

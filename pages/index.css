@@ -60,6 +60,8 @@
 
 @import url(../blocks/element/__like/element__like.css);
 
+@import url(../blocks/element/__basket/element__basket.css);
+
 @import url(../blocks/footer/footer.css);
 
 @import url(../blocks/footer/__copyright/footer__copyright.css);
