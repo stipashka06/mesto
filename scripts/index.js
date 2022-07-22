@@ -3,8 +3,8 @@ const popupElement = document.querySelector('.popup-fade');
 const editButton = document.querySelector('.profile__edit-button');
 const titleElement = document.querySelector('.profile__title');
 const subtitleElement = document.querySelector('.profile__subtitle');
-const namePopupElement = document.querySelector('.popup__input_name');
-const subtitlePopupElement = document.querySelector('.popup__input_description');
+const namePopupElement = document.querySelector('.popup__input_type_name');
+const subtitlePopupElement = document.querySelector('.popup__input_type_description');
 
 function popupOpen() {
   popupElement.classList.add('popup-fade_opened');

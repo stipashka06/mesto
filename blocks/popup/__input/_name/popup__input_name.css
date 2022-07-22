@@ -1,9 +1,0 @@
-.popup__input_name {
-  padding: 38px 0 0;
-}
-
-@media (max-width: 767px) {
-  .popup__input_name {  
-    padding-top: 64px;
-  }
-}

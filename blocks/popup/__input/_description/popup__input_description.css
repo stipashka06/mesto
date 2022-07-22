@@ -1,9 +1,0 @@
-.popup__input_description {
-  padding: 19px 0 0;
-}
-
-@media (max-width: 767px) {
-  .popup__input_description {  
-    padding-top: 20px;
-  }
-}
