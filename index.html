@@ -13,7 +13,6 @@
 </head>
 
 <body class="page">
-  <div></div>
   <header class="header">
     <div class="logo"></div>
   </header>
@@ -30,38 +29,6 @@
       <button class="profile__add-button cursor" type="button" aria-label="Добавить"></button>
     </section>
     <section class="elements" aria-label="Достопримечательности России">
-      <article class="element">
-        <img class="element__image" src="./images/photo-element-mountain-elbrus.jpg" alt="Гора Эльбрус на фоне равнины">
-        <h2 class="element__title">Гора Эльбрус</h2>
-        <button class="element__like cursor" type="button" aria-label="Like"></button>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/photo-element-koktebel.jpg"
-          alt="Синее море на фоне Коктебельских гор">
-        <h2 class="element__title">Коктебель</h2>
-        <button class="element__like cursor" type="button" aria-label="Like"></button>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/photo-element-dombai.jpg" alt="Горный лесной покров в Донбайе">
-        <h2 class="element__title">Домбай</h2>
-        <button class="element__like cursor" type="button" aria-label="Like"></button>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/photo-element-katsiveli.jpg" alt="Морская бухта в Кацивели">
-        <h2 class="element__title">Кацивели</h2>
-        <button class="element__like cursor" type="button" aria-label="Like"></button>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/photo-element-yalta.jpg" alt="Ласточкино Гнездо в Ялте">
-        <h2 class="element__title">Ялта</h2>
-        <button class="element__like cursor" type="button" aria-label="Like"></button>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/photo-element-karachay-cherkessia.jpg"
-          alt="Заросший храм в Карачево-Черкессии">
-        <h2 class="element__title">Карачаево-Черкессия</h2>
-        <button class="element__like cursor" type="button" aria-label="Like"></button>
-      </article>
     </section>
   </main>
   <footer class="footer">
@@ -76,29 +43,38 @@
         <input class="popup__input popup__input_type_description" type="text" value="" name="userinfo">
         <button class="popup__submit-button cursor" type="submit">Сохранить</button>
       </form>
-      <button class="popup__closs-button cursor" type="button" aria-label="Закрыть"></button>
+      <button class="closs-button cursor" type="button" aria-label="Закрыть"></button>
     </div>
   </div>
-  <div class="popup-fade popup-fade_new-card">
+  <div class="popup-fade popup-fade_type_new-card">
     <div class="popup">
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form">
-        <input class="popup__name intut" type="text" placeholder="Название" value="">
-        <input class="popup__description intut" type="text" placeholder="Ссылка на картинку" value="">
+        <input class="popup__input popup__input_type_name" type="text" placeholder="Название" value="">
+        <input class="popup__input popup__input_type_description" type="text" placeholder="Ссылка на картинку" value="">
         <button class="popup__submit-button cursor" type="submit">Сохранить</button>
       </form>
-      <button class="popup__closs-button cursor" type="button"></button>
+      <button class="closs-button cursor" type="button"></button>
     </div>
   </div>
+  <div class="popup-fade popup-fade_type_img">
+    <figure class="popup-figure">
+      <img class="popup-figure__image" src="#" alt="#">
+      <p class="popup-figure__title"></p>
+      <button class="closs-button cursor" type="button"></button>
+    </figure>
+  </div>
+
   <template class="template">
     <article class="element">
       <img class="element__image">
       <h2 class="element__title"></h2>
-      <button class="element__like cursor" type="button" aria-label="Like"></button>
+      <button class="element__like element__like_type_passive cursor" type="button" aria-label="Like"></button>
       <button class="element__basket cursor" type="button" aria-label="Удалить"></button>
     </article>
   </template>
-  <script src="./scripts/index.js"></script>
+
+  <script src="./scripts/index.js" defer></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-.popup__closs-button {
+.closs-button {
   position: absolute;
   bottom: 100%;
   left: 100%;
@@ -9,13 +9,14 @@
   border: none;
 }
 
-.popup__closs-button:hover {
+.closs-button:hover {
   background-image: url(../../../images/logo/popup-closs-opacity.svg);
 }
 
 @media (max-width: 767px) {
-  .popup__closs-button  {  
-    width: 52px;
+  .closs-button  {  
+    left: calc(100% - 20px);
+    width: 20px;
     height: 52px;
     background-size: 20px 20px;
   }
