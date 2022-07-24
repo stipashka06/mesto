@@ -2,7 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  position: relative;
   width: 282px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
