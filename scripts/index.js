@@ -30,6 +30,7 @@ const selectors = {
   editButton: '.profile__edit-button',
   titleElement: '.profile__title',
   subtitleElement: '.profile__subtitle',
+  popups: '.popup-fade',
   popupElement: '.popup-fade_type_edit',
   inputNamePopup: '.popup__input_type_name',
   inputDescriptionPopup: '.popup__input_type_description',
@@ -62,57 +63,52 @@ const formCard = popupElementCard.querySelector(selectors.form);
 const inputNameCard = formCard.querySelector(selectors.inputNamePopup);
 const inputDescriptionCard = formCard.querySelector(selectors.inputDescriptionPopup);
 const popupElementImg = document.querySelector(selectors.popupElementImg);
+const titlePopupElement = popupElementImg.querySelector(selectors.titlePopupElement);
+const imgPopupElement = popupElementImg.querySelector(selectors.imgPopupElement);
+const template = document.querySelector(selectors.template).content.querySelector(selectors.articleTemplateElement);
 
-function temp(name, link) {
-
-  const template = document.querySelector(selectors.template).content.querySelector(selectors.articleTemplateElement);
+function cloneTemplate(name, link) {
   const templateElement = template.cloneNode(true);
   const textTemplateElement = templateElement.querySelector(selectors.textTemplateElement);
   const imgTemplateElement = templateElement.querySelector(selectors.imgTemplateElement);
+  const likeTemplateElement = templateElement.querySelector(selectors.likeTemplateElement);
+  const basketTemplateElement = templateElement.querySelector(selectors.basketTemplateElement);
   textTemplateElement.textContent = name;
   imgTemplateElement.src = link;
   imgTemplateElement.alt = name;
-
-  const likeTemplateElement = templateElement.querySelector(selectors.likeTemplateElement);
   likeTemplateElement.addEventListener('click', function () {
     likeTemplateElement.classList.toggle('element__like_type_active');
   });
-
-  const basketTemplateElement = templateElement.querySelector(selectors.basketTemplateElement);
   basketTemplateElement.addEventListener('click', function () {
     templateElement.remove();
   });
-
-  const titlePopupElement = popupElementImg.querySelector(selectors.titlePopupElement);
-  const imgPopupElement = popupElementImg.querySelector(selectors.imgPopupElement);
   imgTemplateElement.addEventListener('click', function () {
     popupOpen(popupElementImg);
     titlePopupElement.textContent = name;
     imgPopupElement.src = link;
     imgPopupElement.alt = name;
   })
-
   return templateElement;
 }
 
-const tempAdd = function (name, link, conteiner) {
-  const tempFunction = temp(name, link);
+const addTemplate = function (name, link, conteiner) {
+  const tempFunction = cloneTemplate(name, link);
   conteiner.prepend(tempFunction);
 }
 
 const newNames = newName.reverse();
-function mapNewName() {
+function transformsNewName() {
   newNames.map(function (item) {
-    tempAdd(item.name, item.link, elementElement)
+    addTemplate(item.name, item.link, elementElement)
   });
 }
-mapNewName();
+transformsNewName();
 
 function addCard() {
   formCard.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    clossPopup();
-    tempAdd(inputNameCard.value, inputDescriptionCard.value, elementElement);
+    clossPopup(popupElementCard);
+    addTemplate(inputNameCard.value, inputDescriptionCard.value, elementElement);
   })
 }
 addCard();
@@ -120,15 +116,15 @@ addCard();
 function formSubmitHandler() {
   formEdit.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    clossPopup();
+    clossPopup(popupElementEdit);
     titleElement.textContent = inputNameEdit.value;
     subtitleElement.textContent = inputDescriptionEdit.value;
   })
 }
 formSubmitHandler();
 
-function popupOpen(event) {
-  event.classList.add('popup-fade_opened');
+function popupOpen(evt) {
+  evt.classList.add('popup-fade_opened');
   bodyElement.classList.add('page_noscroll');
 }
 
@@ -142,51 +138,30 @@ editButton.addEventListener('click', function () {
 const addButton = document.querySelector(selectors.addButton);
 addButton.addEventListener('click', function () {
   popupOpen(popupElementCard);
-  inputNameCard.value = '';
-  inputDescriptionCard.value = '';
+  formCard.reset();
 });
 
-function clossPopup() {
-  popupElementEdit.classList.remove('popup-fade_opened');
-  popupElementCard.classList.remove('popup-fade_opened');
-  popupElementImg.classList.remove('popup-fade_opened');
+function clossPopup(popup) {
+  popup.classList.remove('popup-fade_opened');
   bodyElement.classList.remove('page_noscroll');
 }
 
-const closeButtons = document.querySelectorAll(selectors.closeButtons);
-if (closeButtons.length > 0) {
-  for (let i = 0; i < closeButtons.length; i++) {
-    const closeButton = closeButtons[i];
-    closeButton.addEventListener('click', function () {
-      clossPopup();
-    });
-  }
-}
-
-popupElementEdit.addEventListener('mousedown', function (event) {
-  if (event.target === event.currentTarget) {
-    clossPopup();
-  }
-});
-popupElementCard.addEventListener('mousedown', function (event) {
-  if (event.target === event.currentTarget) {
-    clossPopup();
-  }
-});
-popupElementImg.addEventListener('mousedown', function (event) {
-  if (event.target === event.currentTarget) {
-    clossPopup();
-  }
+const popups = document.querySelectorAll(selectors.popups);
+popups.forEach(function (popup) {
+  popup.addEventListener('mousedown', function (evt) {
+    if (evt.target.classList.contains('popup-fade_opened')) {
+      clossPopup(popup);
+    }
+    if (evt.target.classList.contains('closs-button')) {
+      clossPopup(popup);
+    }
+  })
 });
 
-document.addEventListener('keydown', function (event) {
-  if (event.which === 27) {
-    clossPopup();
-  }
-});
-
-document.addEventListener('keydown', function (event) {
-  if (event.which === 13) {
-    clossPopup();
+document.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Escape') {
+    clossPopup(popupElementEdit);
+    clossPopup(popupElementCard);
+    clossPopup(popupElementImg);
   }
 });
