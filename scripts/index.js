@@ -83,7 +83,7 @@ function cloneTemplate(name, link) {
     templateElement.remove();
   });
   imgTemplateElement.addEventListener('click', function () {
-    popupOpen(popupElementImg);
+    openPopup(popupElementImg);
     titlePopupElement.textContent = name;
     imgPopupElement.src = link;
     imgPopupElement.alt = name;
@@ -107,41 +107,41 @@ transformsNewName();
 function addCard() {
   formCard.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    clossPopup(popupElementCard);
+    closePopup(popupElementCard);
     addTemplate(inputNameCard.value, inputDescriptionCard.value, elementElement);
   })
 }
 addCard();
 
-function formSubmitHandler() {
+function saveEditing() {
   formEdit.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    clossPopup(popupElementEdit);
+    closePopup(popupElementEdit);
     titleElement.textContent = inputNameEdit.value;
     subtitleElement.textContent = inputDescriptionEdit.value;
   })
 }
-formSubmitHandler();
+saveEditing();
 
-function popupOpen(evt) {
+function openPopup(evt) {
   evt.classList.add('popup-fade_opened');
   bodyElement.classList.add('page_noscroll');
 }
 
 const editButton = document.querySelector(selectors.editButton);
 editButton.addEventListener('click', function () {
-  popupOpen(popupElementEdit);
+  openPopup(popupElementEdit);
   inputNameEdit.value = titleElement.textContent;
   inputDescriptionEdit.value = subtitleElement.textContent;
 });
 
 const addButton = document.querySelector(selectors.addButton);
 addButton.addEventListener('click', function () {
-  popupOpen(popupElementCard);
+  openPopup(popupElementCard);
   formCard.reset();
 });
 
-function clossPopup(popup) {
+function closePopup(popup) {
   popup.classList.remove('popup-fade_opened');
   bodyElement.classList.remove('page_noscroll');
 }
@@ -150,18 +150,18 @@ const popups = document.querySelectorAll(selectors.popups);
 popups.forEach(function (popup) {
   popup.addEventListener('mousedown', function (evt) {
     if (evt.target.classList.contains('popup-fade_opened')) {
-      clossPopup(popup);
+      closePopup(popup);
     }
     if (evt.target.classList.contains('closs-button')) {
-      clossPopup(popup);
+      closePopup(popup);
     }
   })
 });
 
 document.addEventListener('keydown', function (evt) {
   if (evt.key === 'Escape') {
-    clossPopup(popupElementEdit);
-    clossPopup(popupElementCard);
-    clossPopup(popupElementImg);
+    closePopup(popupElementEdit);
+    closePopup(popupElementCard);
+    closePopup(popupElementImg);
   }
 });
