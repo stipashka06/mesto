@@ -1,71 +1,50 @@
-const newName = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-  }
-];
-
 const selectors = {
   bodyElement: '.page',
   editButton: '.profile__edit-button',
+  addButton: '.profile__add-button',
   titleElement: '.profile__title',
   subtitleElement: '.profile__subtitle',
-  popups: '.popup-fade',
+  popup: '.popup-fade',
   popupElement: '.popup-fade_type_edit',
+  popupElementCard: '.popup-fade_type_new-card',
+  popupElementImg: '.popup-fade_type_img',
+  form: '.popup__form',
   inputNamePopup: '.popup__input_type_name',
   inputDescriptionPopup: '.popup__input_type_description',
-  elementElement: '.elements',
-  addButton: '.profile__add-button',
-  popupElementCard: '.popup-fade_type_new-card',
-  form: '.popup__form',
+  submitButton: '.popup__submit-button',
+  imgPopupElement: '.popup-figure__image',
+  titlePopupElement: '.popup-figure__title',
   template: '.template',
+  elementElement: '.elements',
   articleTemplateElement: '.element',
   textTemplateElement: '.element__title',
   imgTemplateElement: '.element__image',
   likeTemplateElement: '.element__like',
   basketTemplateElement: '.element__basket',
-  popupElementImg: '.popup-fade_type_img',
-  imgPopupElement: '.popup-figure__image',
-  titlePopupElement: '.popup-figure__title',
-  closeButtons: '.closs-button',
+  // closeButton: '.close-button',
 };
 
 const bodyElement = document.querySelector(selectors.bodyElement);
 const titleElement = document.querySelector(selectors.titleElement);
 const subtitleElement = document.querySelector(selectors.subtitleElement);
-const elementElement = document.querySelector(selectors.elementElement);
 const popupElementEdit = document.querySelector(selectors.popupElement);
+const forms = document.querySelectorAll(selectors.form);
+
 const formEdit = popupElementEdit.querySelector(selectors.form);
 const inputNameEdit = formEdit.querySelector(selectors.inputNamePopup);
 const inputDescriptionEdit = formEdit.querySelector(selectors.inputDescriptionPopup);
+
 const popupElementCard = document.querySelector(selectors.popupElementCard);
 const formCard = popupElementCard.querySelector(selectors.form);
 const inputNameCard = formCard.querySelector(selectors.inputNamePopup);
 const inputDescriptionCard = formCard.querySelector(selectors.inputDescriptionPopup);
+
 const popupElementImg = document.querySelector(selectors.popupElementImg);
-const titlePopupElement = popupElementImg.querySelector(selectors.titlePopupElement);
 const imgPopupElement = popupElementImg.querySelector(selectors.imgPopupElement);
+const titlePopupElement = popupElementImg.querySelector(selectors.titlePopupElement);
+
 const template = document.querySelector(selectors.template).content.querySelector(selectors.articleTemplateElement);
+const elementElement = document.querySelector(selectors.elementElement);
 
 function cloneTemplate(name, link) {
   const templateElement = template.cloneNode(true);
@@ -107,6 +86,8 @@ transformsNewName();
 function addCard() {
   formCard.addEventListener('submit', function (evt) {
     evt.preventDefault();
+    // formNameCard.elements.submitCard.setAttribute('disabled', 'disabled');
+    // console.log(formNameInfo);
     closePopup(popupElementCard);
     addTemplate(inputNameCard.value, inputDescriptionCard.value, elementElement);
   })
@@ -116,9 +97,14 @@ addCard();
 function saveEditing() {
   formEdit.addEventListener('submit', function (evt) {
     evt.preventDefault();
+    // formNameInfo.elements.submitEdit.setAttribute('disabled', 'disabled');
+    // const formIsValid = formFieldsInfo.every(({ validity }) => validity.valid);
+    // if (formIsValid) {
     closePopup(popupElementEdit);
     titleElement.textContent = inputNameEdit.value;
     subtitleElement.textContent = inputDescriptionEdit.value;
+
+    // }
   })
 }
 saveEditing();
@@ -133,11 +119,14 @@ editButton.addEventListener('click', function () {
   openPopup(popupElementEdit);
   inputNameEdit.value = titleElement.textContent;
   inputDescriptionEdit.value = subtitleElement.textContent;
+  // formEdit.submit.setAttribute('disabled', 'disabled');
+  formEdit.username.focus(); // НЕ РАБОТАЕТ
 });
 
 const addButton = document.querySelector(selectors.addButton);
 addButton.addEventListener('click', function () {
   openPopup(popupElementCard);
+  // formCard.submit.setAttribute('disabled', 'disabled');
   formCard.reset();
 });
 
@@ -146,13 +135,13 @@ function closePopup(popup) {
   bodyElement.classList.remove('page_noscroll');
 }
 
-const popups = document.querySelectorAll(selectors.popups);
-popups.forEach(function (popup) {
+const popup = document.querySelectorAll(selectors.popup);
+popup.forEach(function (popup) {
   popup.addEventListener('mousedown', function (evt) {
     if (evt.target.classList.contains('popup-fade_opened')) {
       closePopup(popup);
     }
-    if (evt.target.classList.contains('closs-button')) {
+    if (evt.target.classList.contains('close-button')) {
       closePopup(popup);
     }
   })
