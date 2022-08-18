@@ -21,7 +21,6 @@ const selectors = {
   imgTemplateElement: '.element__image',
   likeTemplateElement: '.element__like',
   basketTemplateElement: '.element__basket',
-  // closeButton: '.close-button',
 };
 
 const bodyElement = document.querySelector(selectors.bodyElement);
@@ -38,6 +37,7 @@ const popupElementCard = document.querySelector(selectors.popupElementCard);
 const formCard = popupElementCard.querySelector(selectors.form);
 const inputNameCard = formCard.querySelector(selectors.inputNamePopup);
 const inputDescriptionCard = formCard.querySelector(selectors.inputDescriptionPopup);
+const submitButton = document.querySelector(selectors.submitButton);
 
 const popupElementImg = document.querySelector(selectors.popupElementImg);
 const imgPopupElement = popupElementImg.querySelector(selectors.imgPopupElement);
@@ -86,8 +86,6 @@ transformsNewName();
 function addCard() {
   formCard.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    // formNameCard.elements.submitCard.setAttribute('disabled', 'disabled');
-    // console.log(formNameInfo);
     closePopup(popupElementCard);
     addTemplate(inputNameCard.value, inputDescriptionCard.value, elementElement);
   })
@@ -97,36 +95,35 @@ addCard();
 function saveEditing() {
   formEdit.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    // formNameInfo.elements.submitEdit.setAttribute('disabled', 'disabled');
-    // const formIsValid = formFieldsInfo.every(({ validity }) => validity.valid);
-    // if (formIsValid) {
     closePopup(popupElementEdit);
     titleElement.textContent = inputNameEdit.value;
     subtitleElement.textContent = inputDescriptionEdit.value;
-
-    // }
   })
 }
 saveEditing();
 
-function openPopup(evt) {
+function openPopup(evt, formElement) {
   evt.classList.add('popup-fade_opened');
   bodyElement.classList.add('page_noscroll');
+
 }
 
 const editButton = document.querySelector(selectors.editButton);
+const editSubmitButton = formEdit.querySelector(selectors.submitButton);
 editButton.addEventListener('click', function () {
   openPopup(popupElementEdit);
   inputNameEdit.value = titleElement.textContent;
   inputDescriptionEdit.value = subtitleElement.textContent;
-  // formEdit.submit.setAttribute('disabled', 'disabled');
-  formEdit.username.focus(); // НЕ РАБОТАЕТ
+  editSubmitButton.classList.add('popup__submit-button_valid_off');
+  formEdit.submit.setAttribute('disabled', 'disabled');
 });
 
 const addButton = document.querySelector(selectors.addButton);
+const addSubmitButton = formCard.querySelector(selectors.submitButton);
 addButton.addEventListener('click', function () {
   openPopup(popupElementCard);
-  // formCard.submit.setAttribute('disabled', 'disabled');
+  addSubmitButton.classList.add('popup__submit-button_valid_off');
+  formCard.submit.setAttribute('disabled', 'disabled');
   formCard.reset();
 });
 

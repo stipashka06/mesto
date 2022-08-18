@@ -1,8 +1,12 @@
 // функция добавления атрибута disable кнопке "Сохранить" (ссылка кнопки, состояние формы) 
 const toggleFormSubmit = (elementSubmit, { disable }) => {
   if (disable) {
+    submitButton.classList.add('cursor');
+    elementSubmit.classList.remove('popup__submit-button_valid_off');
     elementSubmit.removeAttribute('disabled');
   } else {
+    submitButton.classList.remove('cursor');
+    elementSubmit.classList.add('popup__submit-button_valid_off');
     elementSubmit.setAttribute('disabled', 'disabled');
   }
 };
@@ -25,23 +29,26 @@ const setFieldError = (elementField, elementError, params, submitButton) => {
   if (params.valid) {
     elementField.classList.remove(params.invalidFieldClass);
     elementField.removeAttribute('style');
-    submitButton.classList.remove('popup__submit-button_valid_off');
   } else {
     elementField.classList.add(params.invalidFieldClass);
     elementField.setAttribute('style', 'border-color: red');
-    submitButton.classList.add('popup__submit-button_valid_off');
   }
 };
 
 // функция проверяющая поля (поле на кот. навешивем класс (состояние), сама ошибка , навешиваемый класс ошибки )
-const checkFieldValidity = (elementField, elementError, invalidFieldClass, submitButton) => {
+const checkFieldValidity = (elementField, formElement, invalidFieldClass) => {
   const { validationMessage, validity: { valid } } = elementField;
+  const submitButton = formElement.querySelector(selectors.submitButton)
+  const errorTextContainerSelector = `.popup__input-error_${elementField.name}`;
+  const elementError = formElement.querySelector(errorTextContainerSelector); // поле span
+
   const params = {
     validationMessage,
     valid,
     invalidFieldClass,
   };
 
+  toggleFormSubmit(submitButton, { disable: formElement.checkValidity() });
   setFieldError(elementField, elementError, params, submitButton); // устанавливаем ошибку
 
   return valid;
@@ -50,29 +57,24 @@ const checkFieldValidity = (elementField, elementError, invalidFieldClass, submi
 // Обработчик валидности
 const submitCommonHandler = (e) => {
   e.preventDefault();
-  const formIsValid = checkFormValidity(Array.from(e.target.querySelectorAll('.popup__input')), e.target.querySelector(selectors.submitButton));
-  if (!formIsValid) {
-    e.stopImmediatePropagation();
-  }
+  console.log('Submit');
+};
+
+const setEventListeners = (formElement) => {
+  const inputList = formElement.querySelectorAll('.popup__input');
+  inputList.forEach(inputElement => {
+    inputElement.addEventListener('input', (e) => {
+      checkFieldValidity(inputElement, formElement, 'popup__input-error');
+    });
+  })
 };
 
 function enableValidation(form) {
-  Array.from(form.querySelectorAll('.popup__input')).forEach((elementField) => {
-    const errorTextContainerSelector = `.popup__input-error_${elementField.name}`;
-    const elementError = form.querySelector(errorTextContainerSelector); // поле span
-    elementField.addEventListener('input', (e) => {
-      const field = e.target; // значение филда из input
-      checkFieldValidity(field, elementError, 'popup__input-error', form.querySelector(selectors.submitButton));
-    });
-  });
-};
-
-const setEventListeners = () => {
   forms.forEach((formElement) => {
     formElement.addEventListener('submit', submitCommonHandler);
-    enableValidation(formElement);
+    setEventListeners(formElement);
     checkFormValidity(Array.from(formElement.querySelectorAll('.popup__input')), formElement.querySelector(selectors.submitButton)); // (значение всех полей, ссылка на кнопку)
   });
 };
 
-setEventListeners();
+enableValidation();

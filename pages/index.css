@@ -32,6 +32,10 @@
 
 @import url(../blocks/popup-fade/_opened/popup-fade_opened.css);
 
+@import url(../blocks/popup-fade/_opacity_medium/popup-fade_opacity_medium.css);
+
+@import url(../blocks/popup-fade/_opacity_strong/popup-fade_opacity_strong.css);
+
 @import url(../blocks/popup-figure/popup-figure.css);
 
 @import url(../blocks/popup-figure/__image/popup-figure__image.css);

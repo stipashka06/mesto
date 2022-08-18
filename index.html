@@ -35,38 +35,37 @@
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
 
-  <div class="popup-fade popup-fade_type_edit">
+  <div class="popup-fade popup-fade_opacity_medium popup-fade_type_edit">
     <div class="popup">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="nameInfo" novalidate>
-        <!--Убрать name-->
         <input class="popup__input popup__input_type_name" id="username" name="username" type="text" value="" required
           minlength="2" maxlength="40">
-        <span class="popup__input-error popup__input-error_username" name="userspan"></span>
+        <span class="popup__input-error popup__input-error_username"></span>
         <input class="popup__input popup__input_type_description" id="userinfo" name="userinfo" type="text" value=""
           required minlength="2" maxlength="200">
-        <span class="popup__input-error popup__input-error_userinfo" name="userspan"></span>
+        <span class="popup__input-error popup__input-error_userinfo"></span>
         <button class="popup__submit-button cursor" name="submit" type="submit">Сохранить</button>
       </form>
       <button class="close-button cursor" type="button" aria-label="Закрыть"></button>
     </div>
   </div>
-  <div class="popup-fade popup-fade_type_new-card">
+  <div class="popup-fade popup-fade_opacity_medium popup-fade_type_new-card">
     <div class="popup">
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" name="nameCard" novalidate>
         <input class="popup__input popup__input_type_name" id="cardinfo" name="cardinfo" type="text" value=""
           placeholder="Название" required minlength="2" maxlength="30">
-        <span class="popup__input-error popup__input-error_cardinfo" name="userspan"></span>
+        <span class="popup__input-error popup__input-error_cardinfo"></span>
         <input class="popup__input popup__input_type_description" id="cardurl" name="cardurl" type="url" value=""
           placeholder="Ссылка на картинку" required>
-        <span class="popup__input-error popup__input-error_cardurl" name="userspan"></span>
+        <span class="popup__input-error popup__input-error_cardurl"></span>
         <button class="popup__submit-button cursor" name="submit" type="submit">Сохранить</button>
       </form>
       <button class="close-button cursor" type="button"></button>
     </div>
   </div>
-  <div class="popup-fade popup-fade_type_img">
+  <div class="popup-fade popup-fade_opacity_strong popup-fade_type_img">
     <figure class="popup-figure">
       <img class="popup-figure__image" src="#" alt="#">
       <p class="popup-figure__title"></p>

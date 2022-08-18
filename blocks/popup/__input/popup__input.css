@@ -10,7 +10,7 @@
 }
 
 .popup__input:first-of-type {
-  padding: 38px 0 0;
+  padding: 36px 0 0;
 }
 
 @media (max-width: 767px) {
@@ -20,7 +20,7 @@
 }
 
 .popup__input:last-of-type {
-  padding: 13px 0 0;
+  padding: 10px 0 0;
 }
 
 @media (max-width: 767px) {
