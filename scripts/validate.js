@@ -63,10 +63,6 @@ function enableValidation(form) {
     elementField.addEventListener('input', (e) => {
       const field = e.target; // значение филда из input
       checkFieldValidity(field, elementError, 'popup__input-error', form.querySelector(selectors.submitButton));
-      console.log(inputNameEdit.validity);
-      console.log(inputDescriptionEdit.validity);
-      console.log(inputNameCard.validity);
-      console.log(inputDescriptionCard.validity);
     });
   });
 };
