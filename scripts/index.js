@@ -21,6 +21,7 @@ const selectors = {
   imgTemplateElement: '.element__image',
   likeTemplateElement: '.element__like',
   basketTemplateElement: '.element__basket',
+  inputs: '.popup__input',
 };
 
 const bodyElement = document.querySelector(selectors.bodyElement);
@@ -37,7 +38,7 @@ const popupElementCard = document.querySelector(selectors.popupElementCard);
 const formCard = popupElementCard.querySelector(selectors.form);
 const inputNameCard = formCard.querySelector(selectors.inputNamePopup);
 const inputDescriptionCard = formCard.querySelector(selectors.inputDescriptionPopup);
-const submitButton = document.querySelector(selectors.submitButton);
+// const submitButton = document.querySelector(selectors.submitButton);
 
 const popupElementImg = document.querySelector(selectors.popupElementImg);
 const imgPopupElement = popupElementImg.querySelector(selectors.imgPopupElement);
@@ -45,6 +46,7 @@ const titlePopupElement = popupElementImg.querySelector(selectors.titlePopupElem
 
 const template = document.querySelector(selectors.template).content.querySelector(selectors.articleTemplateElement);
 const elementElement = document.querySelector(selectors.elementElement);
+const inputs = document.querySelector(selectors.inputs);
 
 function cloneTemplate(name, link) {
   const templateElement = template.cloneNode(true);
@@ -102,34 +104,43 @@ function saveEditing() {
 }
 saveEditing();
 
-function openPopup(evt, formElement) {
-  evt.classList.add('popup-fade_opened');
+function openPopup(popup) {
+  popup.classList.add('popup-fade_opened');
   bodyElement.classList.add('page_noscroll');
-
+  document.addEventListener('keydown', keydownEscape);
 }
 
 const editButton = document.querySelector(selectors.editButton);
 const editSubmitButton = formEdit.querySelector(selectors.submitButton);
 editButton.addEventListener('click', function () {
   openPopup(popupElementEdit);
+  // checkFormValidity(Array.from(formEdit.querySelectorAll(selectors.inputs)), formEdit.querySelector(selectors.submitButton)); // (значение всех полей, ссылка на кнопку)
+  toggleFormSubmit(editSubmitButton, { disable: formEdit.checkValidity() });
   inputNameEdit.value = titleElement.textContent;
   inputDescriptionEdit.value = subtitleElement.textContent;
-  editSubmitButton.classList.add('popup__submit-button_valid_off');
-  formEdit.submit.setAttribute('disabled', 'disabled');
+  // editSubmitButton.classList.add('popup__submit-button_valid_off');
+  // formEdit.submit.setAttribute('disabled', 'disabled');
+  // console.log(Array.from(formEdit.querySelectorAll(selectors.inputs)));
+  // console.log(formEdit.querySelector(selectors.submitButton));
 });
 
 const addButton = document.querySelector(selectors.addButton);
 const addSubmitButton = formCard.querySelector(selectors.submitButton);
 addButton.addEventListener('click', function () {
   openPopup(popupElementCard);
-  addSubmitButton.classList.add('popup__submit-button_valid_off');
-  formCard.submit.setAttribute('disabled', 'disabled');
+  // checkFormValidity(Array.from(formCard.querySelectorAll(selectors.inputs)), formCard.querySelector(selectors.submitButton)); // (значение всех полей, ссылка на кнопку)
+  toggleFormSubmit(addSubmitButton, { disable: formCard.checkValidity() });
   formCard.reset();
+  // addSubmitButton.classList.add('popup__submit-button_valid_off');
+  // formCard.submit.setAttribute('disabled', 'disabled');
+  // console.log(formCard.checkValidity());
+  // console.log(addSubmitButton);
 });
 
 function closePopup(popup) {
   popup.classList.remove('popup-fade_opened');
   bodyElement.classList.remove('page_noscroll');
+  document.removeEventListener('keydown', keydownEscape);
 }
 
 const popup = document.querySelectorAll(selectors.popup);
@@ -144,10 +155,10 @@ popup.forEach(function (popup) {
   })
 });
 
-document.addEventListener('keydown', function (evt) {
+function keydownEscape(evt) {
   if (evt.key === 'Escape') {
     closePopup(popupElementEdit);
     closePopup(popupElementCard);
     closePopup(popupElementImg);
   }
-});
+};

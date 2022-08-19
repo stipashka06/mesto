@@ -6,21 +6,21 @@
   color: black;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  height: 37px;
+  height: 30px;
 }
 
 .popup__input:first-of-type {
-  padding: 36px 0 0;
+  padding: 44px 0 0;
 }
 
 @media (max-width: 767px) {
   .popup__input:first-of-type {  
-    padding-top: 64px;
+    padding-top: 76px;
   }
 }
 
 .popup__input:last-of-type {
-  padding: 10px 0 0;
+  padding: 0px 0 0;
 }
 
 @media (max-width: 767px) {
