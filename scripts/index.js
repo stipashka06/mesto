@@ -23,6 +23,7 @@ const selectors = {
   basketTemplateElement: '.element__basket',
 };
 
+
 const bodyElement = document.querySelector(selectors.bodyElement);
 const titleElement = document.querySelector(selectors.titleElement);
 const subtitleElement = document.querySelector(selectors.subtitleElement);
@@ -119,10 +120,10 @@ function openPopup(popup) {
 const editButton = document.querySelector(selectors.editButton);
 const editSubmitButton = formEdit.querySelector(selectors.submitButton);
 editButton.addEventListener('click', function () {
-  toggleFormSubmit(editSubmitButton, { disable: formEdit.checkValidity() });
-  formEdit.reset();
   inputNameEdit.value = titleElement.textContent;
   inputDescriptionEdit.value = subtitleElement.textContent;
+  toggleFormSubmit(editSubmitButton, { disable: formEdit.checkValidity() });
+  cleanErrorForm(formEdit);
   openPopup(popupElementEdit);
 });
 
@@ -131,9 +132,8 @@ const addSubmitButton = formCard.querySelector(selectors.submitButton);
 addButton.addEventListener('click', function () {
   formCard.reset();
   toggleFormSubmit(addSubmitButton, { disable: formCard.checkValidity() });
+  cleanErrorForm(formCard);
   openPopup(popupElementCard);
-  console.dir(formCard);
-  console.log(formCard.checkValidity('formCard.checkValidity()', formCard.checkValidity()));
 });
 
 function closePopup(popup) {

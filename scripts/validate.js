@@ -6,6 +6,16 @@ const validateSelector = {
   invalidSubmitButtonSelector: '.popup__submit-button_valid_off',
 };
 
+function cleanErrorForm(formElement) {
+  formElement.querySelectorAll(validateSelector.inputSelector).forEach((cleaninput) => {
+    cleaninput.classList.remove('popup__input-error');
+    cleaninput.removeAttribute('style');
+  });
+  formElement.querySelectorAll(validateSelector.spanErrorSelector).forEach((cleanSpan) => {
+    cleanSpan.textContent = "";
+  });
+};
+
 // функция добавления атрибута disable кнопке "Сохранить" (ссылка кнопки, состояние формы) 
 const buttonRemove = (validateSelector, buttonError) => {
   elementSubmit.classList.add(validateSelector.invalidSubmitButtonSelector);
