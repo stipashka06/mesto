@@ -3,14 +3,13 @@ const validateSelector = {
   inputSelector: '.popup__input',
   spanErrorSelector: '.popup__input-error',
   submitButtonSelector: '.popup__submit-button',
-  invalidSubmitButtonSelector: '.popup__submit-button_valid_off',
+  errorSelector: 'popup__input-error',
+  invalidSubmitButtonSelector: 'popup__submit-button_valid_off',
 };
-
-// Ирина, но мы тогда добавляем класс с точкой, что приводит к неправильной работе. Наверно не надо так делать. Или я вас неправильно понял. 
 
 function cleanErrorForm(formElement) {
   formElement.querySelectorAll(validateSelector.inputSelector).forEach((cleaninput) => {
-    cleaninput.classList.remove(validateSelector.spanErrorSelector);
+    cleaninput.classList.remove(validateSelector.errorSelector);
     cleaninput.removeAttribute('style');
   });
   formElement.querySelectorAll(validateSelector.spanErrorSelector).forEach((cleanSpan) => {
@@ -86,7 +85,7 @@ const setEventListeners = (formElement) => {
 
   inputList.forEach(inputElement => {
     inputElement.addEventListener('input', (e) => {
-      checkFieldValidity(inputElement, formElement, validateSelector.spanErrorSelector);
+      checkFieldValidity(inputElement, formElement, validateSelector.errorSelector);
     });
   });
 };
