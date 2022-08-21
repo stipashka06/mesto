@@ -123,7 +123,7 @@ editButton.addEventListener('click', function () {
   inputNameEdit.value = titleElement.textContent;
   inputDescriptionEdit.value = subtitleElement.textContent;
   toggleFormSubmit(editSubmitButton, { disable: formEdit.checkValidity() });
-  cleanErrorForm(formEdit);
+  cleanErrorForm(formEdit, editSubmitButton);
   openPopup(popupElementEdit);
 });
 
@@ -132,7 +132,7 @@ const addSubmitButton = formCard.querySelector(selectors.submitButton);
 addButton.addEventListener('click', function () {
   formCard.reset();
   toggleFormSubmit(addSubmitButton, { disable: formCard.checkValidity() });
-  cleanErrorForm(formCard);
+  cleanErrorForm(formCard, addSubmitButton);
   openPopup(popupElementCard);
 });
 
