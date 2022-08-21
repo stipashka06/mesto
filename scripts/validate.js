@@ -6,9 +6,11 @@ const validateSelector = {
   invalidSubmitButtonSelector: '.popup__submit-button_valid_off',
 };
 
+// Ирина, но мы тогда добавляем класс с точкой, что приводит к неправильной работе. Наверно не надо так делать. Или я вас неправильно понял. 
+
 function cleanErrorForm(formElement) {
   formElement.querySelectorAll(validateSelector.inputSelector).forEach((cleaninput) => {
-    cleaninput.classList.remove('popup__input-error');
+    cleaninput.classList.remove(validateSelector.spanErrorSelector);
     cleaninput.removeAttribute('style');
   });
   formElement.querySelectorAll(validateSelector.spanErrorSelector).forEach((cleanSpan) => {
@@ -24,10 +26,10 @@ const buttonRemove = (validateSelector, buttonError) => {
 
 const toggleFormSubmit = (elementSubmit, { disable }) => {
   if (disable) {
-    elementSubmit.classList.remove('popup__submit-button_valid_off');
+    elementSubmit.classList.remove(validateSelector.invalidSubmitButtonSelector);
     elementSubmit.removeAttribute('disabled');
   } else {
-    elementSubmit.classList.add('popup__submit-button_valid_off');
+    elementSubmit.classList.add(validateSelector.invalidSubmitButtonSelector);
     elementSubmit.setAttribute('disabled', 'disabled');
   }
 };
@@ -84,7 +86,7 @@ const setEventListeners = (formElement) => {
 
   inputList.forEach(inputElement => {
     inputElement.addEventListener('input', (e) => {
-      checkFieldValidity(inputElement, formElement, 'popup__input-error');
+      checkFieldValidity(inputElement, formElement, validateSelector.spanErrorSelector);
     });
   });
 };
