@@ -38,7 +38,7 @@
   <div class="popup-fade popup-fade_opacity_medium popup-fade_type_edit">
     <div class="popup">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="nameInfo" novalidate>
+      <form class="popup__form popup__form_info" name="nameInfo" novalidate>
         <input class="popup__input popup__input_type_name" id="username" name="username" type="text" value="" required
           minlength="2" maxlength="40">
         <span class="popup__input-error popup__input-error_username"></span>
@@ -53,7 +53,7 @@
   <div class="popup-fade popup-fade_opacity_medium popup-fade_type_new-card">
     <div class="popup">
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form" name="nameCard" novalidate>
+      <form class="popup__form popup__form_Card" name="nameCard" novalidate>
         <input class="popup__input popup__input_type_name" id="cardinfo" name="cardinfo" type="text" value=""
           placeholder="Название" required minlength="2" maxlength="30">
         <span class="popup__input-error popup__input-error_cardinfo"></span>
@@ -83,8 +83,8 @@
   </template>
 
   <script src="./scripts/arrays.js" defer></script>
-  <script src="./scripts/index.js" defer></script>
-  <script src="./scripts/validate.js" defer></script>
+  <script src="./scripts/index.js" type="module" defer></script>
+
 </body>
 
 </html>
