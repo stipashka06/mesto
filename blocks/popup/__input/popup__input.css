@@ -9,6 +9,10 @@
   height: 30px;
 }
 
+.popup__input.error {
+  border-bottom-color: red;
+}
+
 .popup__input:first-of-type {
   padding: 44px 0 0;
 }

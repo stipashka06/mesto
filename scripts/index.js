@@ -1,9 +1,9 @@
-export { openPopup, popupElementImg };
+export { openPopup, popupElementImg, imgPopupElement, titlePopupElement };
 
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
-const validateSelector = {
+const validateSelectors = {
   popup: '.popup-fade',
   formSelector: '.popup__form',
   formSelectorInfo: '.popup__form_info',
@@ -11,8 +11,9 @@ const validateSelector = {
   inputSelector: '.popup__input',
   spanErrorSelector: '.popup__input-error',
   submitButtonSelector: '.popup__submit-button',
-  errorSelector: 'popup__input-error',
-  invalidSubmitButtonSelector: 'popup__submit-button_valid_off',
+  errorElement: 'popup__input-error',
+  errorBorderElement: 'error',
+  invalidSubmitButtonElement: 'popup__submit-button_valid_off',
 };
 
 const selectors = {
@@ -55,50 +56,50 @@ const inputNameCard = formCard.querySelector(selectors.inputNamePopup);
 const inputDescriptionCard = formCard.querySelector(selectors.inputDescriptionPopup);
 
 const popupElementImg = document.querySelector(selectors.popupElementImg);
+const imgPopupElement = popupElementImg.querySelector(selectors.imgPopupElement);
+const titlePopupElement = popupElementImg.querySelector(selectors.titlePopupElement);
 
-const validatorInfo = new FormValidator(validateSelector, formEdit);
-const validatorCard = new FormValidator(validateSelector, formCard);
+const validatorInfo = new FormValidator(validateSelectors, formEdit);
+const validatorCard = new FormValidator(validateSelectors, formCard);
 validatorInfo.enableValidation();
 validatorCard.enableValidation();
 
-function addTemplate(name, link, conteiner) {
+function addNewCard(name, link) {
   const cardItem = new Card(name, link, selectors);
-  const tempFunction = cardItem.cloneTemplate(name, link);
+  return cardItem;
+};
+
+function insertCardInMarkup(name, link, conteiner) {
+  const tempFunction = addNewCard(name, link).cloneTemplate(name, link);
   conteiner.prepend(tempFunction);
 };
 
-function transformsNewName() {
-  newName.map(function (item) {
-    addTemplate(item.name, item.link, elementElement)
+function renderInitialCards() {
+  initialCards.map(function (item) {
+    insertCardInMarkup(item.name, item.link, elementElement);
   });
 };
-transformsNewName();
+renderInitialCards();
 
-function saveEditing() {
-  formEdit.addEventListener('submit', function (evt) {
-    evt.preventDefault();
-    titleElement.textContent = inputNameEdit.value;
-    subtitleElement.textContent = inputDescriptionEdit.value;
-    closePopup(popupElementEdit);
-    formEdit.reset();
-  });
-};
-saveEditing();
+formEdit.addEventListener('submit', function (evt) {
+  evt.preventDefault();
+  titleElement.textContent = inputNameEdit.value;
+  subtitleElement.textContent = inputDescriptionEdit.value;
+  closePopup(popupElementEdit);
+  formEdit.reset();
+});
 
-function addCard() {
-  formCard.addEventListener('submit', function (evt) {
-    evt.preventDefault();
-    addTemplate(inputNameCard.value, inputDescriptionCard.value, elementElement);
-    closePopup(popupElementCard);
-    formCard.reset();
-  });
-};
-addCard();
+formCard.addEventListener('submit', function (evt) {
+  evt.preventDefault();
+  insertCardInMarkup(inputNameCard.value, inputDescriptionCard.value, elementElement);
+  closePopup(popupElementCard);
+  formCard.reset();
+});
 
 function openPopup(popup) {
   popup.classList.add('popup-fade_opened');
   bodyElement.classList.add('page_noscroll');
-  document.addEventListener('keydown', keydownEscape);
+  document.addEventListener('keydown', closePopupThroughEscape);
 };
 
 const editButton = document.querySelector(selectors.editButton);
@@ -121,25 +122,24 @@ addButton.addEventListener('click', function () {
 function closePopup(popup) {
   popup.classList.remove('popup-fade_opened');
   bodyElement.classList.remove('page_noscroll');
-  document.removeEventListener('keydown', keydownEscape);
+  document.removeEventListener('keydown', closePopupThroughEscape);
 };
 
 const popup = document.querySelectorAll(selectors.popup);
 popup.forEach(function (popup) {
   popup.addEventListener('mousedown', function (evt) {
-    if (evt.target.classList.contains('popup-fade_opened')) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains('close-button')) {
+    if (evt.target.classList.contains('popup-fade_opened') || evt.target.classList.contains('close-button')) {
       closePopup(popup);
     }
   });
 });
 
-function keydownEscape(evt) {
+function closePopupThroughEscape(evt) {
   if (evt.key === 'Escape') {
-    closePopup(popupElementEdit);
-    closePopup(popupElementCard);
-    closePopup(popupElementImg);
-  }
+    popup.forEach(function (form) {
+      if (form.classList.contains('popup-fade_opened')) {
+        closePopup(form);
+      };
+    });
+  };
 };

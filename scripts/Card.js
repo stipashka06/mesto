@@ -1,44 +1,54 @@
-import { openPopup, popupElementImg } from './index.js';
+import { openPopup, popupElementImg, imgPopupElement, titlePopupElement } from './index.js';
 
 export default class Card {
-  static _template = document.querySelector('.template').content;
 
   constructor(name, link, selectors) {
     this.name = name;
     this.link = link;
     this._selectors = selectors;
+    this._element = document.querySelector('.template').content.querySelector(this._selectors.articleTemplateElement).cloneNode(true);
+    this._textTemplateElement = this._element.querySelector(this._selectors.textTemplateElement);
+    this._imgTemplateElement = this._element.querySelector(this._selectors.imgTemplateElement);
+    this._likeTemplateElement = this._element.querySelector(this._selectors.likeTemplateElement);
+    this._basketTemplateElement = this._element.querySelector(this._selectors.basketTemplateElement);
   };
 
-  cloneTemplate() {
-    this._element = Card._template.querySelector(this._selectors.articleTemplateElement).cloneNode(true);
-    const textTemplateElement = this._element.querySelector(this._selectors.textTemplateElement);
-    const imgTemplateElement = this._element.querySelector(this._selectors.imgTemplateElement);
-    const likeTemplateElement = this._element.querySelector(this._selectors.likeTemplateElement);
-    this._basketTemplateElement = this._element.querySelector(this._selectors.basketTemplateElement);
+  _gettingТemplate() {
+    this._textTemplateElement.textContent = this.name;
+    this._imgTemplateElement.src = this.link;
+    this._imgTemplateElement.alt = this.name;
+  };
 
-    textTemplateElement.textContent = this.name;
-    imgTemplateElement.src = this.link;
-    imgTemplateElement.alt = this.name;
-
-    likeTemplateElement.addEventListener('click', function () {
-      likeTemplateElement.classList.toggle('element__like_type_active');
-    });
-
+  _setEventListeners() {
+    this._likeTemplateElement.addEventListener('click', this._handleCliclikeElement);
     this._basketTemplateElement.addEventListener('click', this._handleClickDeleteElement);
+    this._imgTemplateElement.addEventListener('click', this._handleClicImgElement);
+  };
 
-    const imgPopupElement = popupElementImg.querySelector(this._selectors.imgPopupElement);
-    const titlePopupElement = popupElementImg.querySelector(this._selectors.titlePopupElement);
-    imgTemplateElement.addEventListener('click', () => {
-      openPopup(popupElementImg);
-      titlePopupElement.textContent = this.name;
-      imgPopupElement.src = this.link;
-      imgPopupElement.alt = this.name;
-    });
-
-    return this._element;
+  _handleCliclikeElement = () => {
+    this._likeTemplateElement.classList.toggle('element__like_type_active');
   };
 
   _handleClickDeleteElement = () => {
     this._element.remove();
+    this._element = null;
+  };
+
+  _handleClicImgElement = () => {
+    titlePopupElement.textContent = this.name;
+    imgPopupElement.src = this.link;
+    imgPopupElement.alt = this.name;
+    this._openCard();
+  };
+
+  _openCard() {
+    openPopup(popupElementImg);
+  };
+
+  cloneTemplate() {
+    this._gettingТemplate();
+    this._setEventListeners();
+
+    return this._element;
   };
 };
