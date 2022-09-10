@@ -7,26 +7,26 @@ export default class Card {
     this.link = link;
     this._selectors = selectors;
     this._element = document.querySelector('.template').content.querySelector(this._selectors.articleTemplateElement).cloneNode(true);
-    this._textTemplateElement = this._element.querySelector(this._selectors.textTemplateElement);
-    this._imgTemplateElement = this._element.querySelector(this._selectors.imgTemplateElement);
-    this._likeTemplateElement = this._element.querySelector(this._selectors.likeTemplateElement);
-    this._basketTemplateElement = this._element.querySelector(this._selectors.basketTemplateElement);
+    this._textElement = this._element.querySelector(this._selectors.textTemplateElement);
+    this._imgElement = this._element.querySelector(this._selectors.imgTemplateElement);
+    this._likeElement = this._element.querySelector(this._selectors.likeTemplateElement);
+    this._basketElement = this._element.querySelector(this._selectors.basketTemplateElement);
   };
 
-  _gettingТemplate() {
-    this._textTemplateElement.textContent = this.name;
-    this._imgTemplateElement.src = this.link;
-    this._imgTemplateElement.alt = this.name;
+  _setElementData() {
+    this._textElement.textContent = this.name;
+    this._imgElement.src = this.link;
+    this._imgElement.alt = this.name;
   };
 
   _setEventListeners() {
-    this._likeTemplateElement.addEventListener('click', this._handleCliclikeElement);
-    this._basketTemplateElement.addEventListener('click', this._handleClickDeleteElement);
-    this._imgTemplateElement.addEventListener('click', this._handleClicImgElement);
+    this._likeElement.addEventListener('click', this._handleClickLikeElement);
+    this._basketElement.addEventListener('click', this._handleClickDeleteElement);
+    this._imgElement.addEventListener('click', this._handleClicImgElement);
   };
 
-  _handleCliclikeElement = () => {
-    this._likeTemplateElement.classList.toggle('element__like_type_active');
+  _handleClickLikeElement = () => {
+    this._likeElement.classList.toggle('element__like_type_active');
   };
 
   _handleClickDeleteElement = () => {
@@ -45,8 +45,8 @@ export default class Card {
     openPopup(popupElementImg);
   };
 
-  cloneTemplate() {
-    this._gettingТemplate();
+  generateCard() {
+    this._setElementData();
     this._setEventListeners();
 
     return this._element;

@@ -64,14 +64,14 @@ const validatorCard = new FormValidator(validateSelectors, formCard);
 validatorInfo.enableValidation();
 validatorCard.enableValidation();
 
-function addNewCard(name, link) {
+function createNewCard(name, link) {
   const cardItem = new Card(name, link, selectors);
-  return cardItem;
+  const tempFunction = cardItem.generateCard(name, link);
+  return tempFunction;
 };
 
 function insertCardInMarkup(name, link, conteiner) {
-  const tempFunction = addNewCard(name, link).cloneTemplate(name, link);
-  conteiner.prepend(tempFunction);
+  conteiner.prepend(createNewCard(name, link));
 };
 
 function renderInitialCards() {
@@ -102,8 +102,8 @@ function openPopup(popup) {
   document.addEventListener('keydown', closePopupThroughEscape);
 };
 
-const editButton = document.querySelector(selectors.editButton);
-editButton.addEventListener('click', function () {
+const profileEditButton = document.querySelector(selectors.editButton);
+profileEditButton.addEventListener('click', function () {
   inputNameEdit.value = titleElement.textContent;
   inputDescriptionEdit.value = subtitleElement.textContent;
   validatorInfo._toggleFormSubmit();
@@ -111,8 +111,8 @@ editButton.addEventListener('click', function () {
   openPopup(popupElementEdit);
 });
 
-const addButton = document.querySelector(selectors.addButton);
-addButton.addEventListener('click', function () {
+const profileAddButton = document.querySelector(selectors.addButton);
+profileAddButton.addEventListener('click', function () {
   formCard.reset();
   validatorCard._toggleFormSubmit();
   validatorCard._cleanErrorForm();
@@ -125,8 +125,8 @@ function closePopup(popup) {
   document.removeEventListener('keydown', closePopupThroughEscape);
 };
 
-const popup = document.querySelectorAll(selectors.popup);
-popup.forEach(function (popup) {
+const popups = document.querySelectorAll(selectors.popup);
+popups.forEach(function (popup) {
   popup.addEventListener('mousedown', function (evt) {
     if (evt.target.classList.contains('popup-fade_opened') || evt.target.classList.contains('close-button')) {
       closePopup(popup);
@@ -135,11 +135,8 @@ popup.forEach(function (popup) {
 });
 
 function closePopupThroughEscape(evt) {
+  const popupOpened = document.querySelector('.popup-fade_opened');
   if (evt.key === 'Escape') {
-    popup.forEach(function (form) {
-      if (form.classList.contains('popup-fade_opened')) {
-        closePopup(form);
-      };
-    });
+    closePopup(popupOpened);
   };
 };

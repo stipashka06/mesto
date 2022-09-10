@@ -35,9 +35,7 @@ export default class FormValidator {
   };
 
   _isValid() {
-    const validityInputSelector = (evt) => evt.validity.valid !== true;
-    const validInputSelector = this._arrayInputElements.some(validityInputSelector);
-    return validInputSelector;
+    return this._arrayInputElements.some((evt) => !evt.validity.valid);
   };
 
   _toggleFormSubmit() {
