@@ -1,8 +1,8 @@
-import { openPopup, popupElementImg, imgPopupElement, titlePopupElement } from './index.js';
+import { openPopup, popupElementImg } from '../scripts/index.js';
 
 export default class Card {
 
-  constructor(name, link, selectors) {
+  constructor(name, link, selectors, handleCardClick) {
     this.name = name;
     this.link = link;
     this._selectors = selectors;
@@ -11,6 +11,7 @@ export default class Card {
     this._imgElement = this._element.querySelector(this._selectors.imgTemplateElement);
     this._likeElement = this._element.querySelector(this._selectors.likeTemplateElement);
     this._basketElement = this._element.querySelector(this._selectors.basketTemplateElement);
+    this._handleCardClick = handleCardClick;
   };
 
   _setElementData() {
@@ -22,7 +23,7 @@ export default class Card {
   _setEventListeners() {
     this._likeElement.addEventListener('click', this._handleClickLikeElement);
     this._basketElement.addEventListener('click', this._handleClickDeleteElement);
-    this._imgElement.addEventListener('click', this._handleClicImgElement);
+    this._imgElement.addEventListener('click', () => { this._handleCardClick(this.name, this.link) });
   };
 
   _handleClickLikeElement = () => {
@@ -32,13 +33,6 @@ export default class Card {
   _handleClickDeleteElement = () => {
     this._element.remove();
     this._element = null;
-  };
-
-  _handleClicImgElement = () => {
-    titlePopupElement.textContent = this.name;
-    imgPopupElement.src = this.link;
-    imgPopupElement.alt = this.name;
-    this._openCard();
   };
 
   _openCard() {

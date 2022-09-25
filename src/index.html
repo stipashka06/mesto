@@ -9,7 +9,6 @@
     content="Яндекс Практикум, веб-програмирование, Место, Mesto, Жак-Ив Кусто, исследователь океана, путешествия, travel" />
   <meta name="autor" content="Юровский Константин" />
   <title>Место</title>
-  <link rel="stylesheet" href="./pages/index.css" />
 </head>
 
 <body class="page">
@@ -18,7 +17,7 @@
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Жак-Ив Кусто">
+      <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="Жак-Ив Кусто">
       <div class="profile__info">
         <div class="profile__info-title">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -81,9 +80,6 @@
       <button class="element__basket cursor" type="button" aria-label="Удалить"></button>
     </article>
   </template>
-
-  <script src="./scripts/arrays.js" defer></script>
-  <script src="./scripts/index.js" type="module" defer></script>
 
 </body>
 

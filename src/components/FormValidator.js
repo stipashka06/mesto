@@ -9,10 +9,6 @@ export default class FormValidator {
     this._submitButtonElement = this._formElement.querySelector(this._validateSelectors.submitButtonSelector);
   };
 
-  _submitCommonHandler(e) {
-    e.preventDefault();
-  };
-
   _unlockSubmitButtonElement() {
     this._submitButtonElement.classList.remove(this._validateSelectors.invalidSubmitButtonElement);
     this._submitButtonElement.removeAttribute('disabled');
@@ -78,7 +74,6 @@ export default class FormValidator {
   };
 
   enableValidation() {
-    this._formElement.addEventListener('submit', this._submitCommonHandler);
     this._setEventListeners();
     this._toggleFormSubmit();
   };
