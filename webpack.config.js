@@ -4,14 +4,14 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // подклю�
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // подключите к проекту mini-css-extract-plugin
 
 module.exports = { // это синтаксис экспорта в Node.js
-  entry: path.resolve(__dirname, 'src', 'scripts', 'index.js'),/* { main: './scripts/index.js' }, */ // указали первое место, куда заглянет webpack
+  entry: path.resolve(__dirname, 'src', 'pages', 'index.js'),/* { main: './pages/index.js' }, */ // указали первое место, куда заглянет webpack
   output: { // указали в какой файл будет собираться весь js и дали ему имя 
     path: path.resolve(__dirname, 'dist'), // переписали точку выхода, используя утилиту path
     filename: '[name].[contenthash].js',
     clean: true,
     // publicPath: ''
   },
-  devtool: 'inline-source-map',
+  devtool: 'inline-source-map', // связь с исходником для остлеживания ошибок
   // mode: 'development', // добавили режим разработчика
   // devServer: {
   //   static: path.resolve(__dirname, './dist'), // путь, куда "смотрит" режим разработчика

@@ -31,7 +31,7 @@ export default class FormValidator {
   };
 
   _isValid() {
-    return this._arrayInputElements.some((evt) => !evt.validity.valid);
+    return this._arrayInputElements.some((data) => !data.validity.valid);
   };
 
   _toggleFormSubmit() {

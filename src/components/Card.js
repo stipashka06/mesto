@@ -1,12 +1,10 @@
-import { openPopup, popupElementImg } from '../scripts/index.js';
-
 export default class Card {
 
-  constructor(name, link, selectors, handleCardClick) {
+  constructor({ name, link }, selectors, handleCardClick) {
     this.name = name;
     this.link = link;
     this._selectors = selectors;
-    this._element = document.querySelector('.template').content.querySelector(this._selectors.articleTemplateElement).cloneNode(true);
+    this._element = document.querySelector(this._selectors.template).content.querySelector(this._selectors.articleTemplateElement).cloneNode(true);
     this._textElement = this._element.querySelector(this._selectors.textTemplateElement);
     this._imgElement = this._element.querySelector(this._selectors.imgTemplateElement);
     this._likeElement = this._element.querySelector(this._selectors.likeTemplateElement);
@@ -33,10 +31,6 @@ export default class Card {
   _handleClickDeleteElement = () => {
     this._element.remove();
     this._element = null;
-  };
-
-  _openCard() {
-    openPopup(popupElementImg);
   };
 
   generateCard() {
