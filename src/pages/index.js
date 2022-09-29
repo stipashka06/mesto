@@ -47,11 +47,6 @@ const selectors = {
   basketTemplateElement: '.element__basket',
 };
 
-// const bodyElement = document.querySelector(selectors.bodyElement);
-// const titleElement = document.querySelector(selectors.titleElement);
-// const subtitleElement = document.querySelector(selectors.subtitleElement);
-// const elementElement = document.querySelector(selectors.elementElement);
-
 const popupElementEdit = document.querySelector(selectors.popupElement);
 const formEdit = popupElementEdit.querySelector(selectors.form);
 const inputNameEdit = formEdit.querySelector(selectors.inputNamePopup);
@@ -59,20 +54,12 @@ const inputDescriptionEdit = formEdit.querySelector(selectors.inputDescriptionPo
 
 const popupElementCard = document.querySelector(selectors.popupElementCard);
 const formCard = popupElementCard.querySelector(selectors.form);
-const inputNameCard = formCard.querySelector(selectors.inputNamePopup);
-const inputDescriptionCard = formCard.querySelector(selectors.inputDescriptionPopup);
-
-// const popupElementImg = document.querySelector(selectors.popupElementImg);
-// const imgPopupElement = popupElementImg.querySelector(selectors.imgPopupElement);
-// const titlePopupElement = popupElementImg.querySelector(selectors.titlePopupElement);
-// const submitButtonSelector = popupElementImg.querySelector(validateSelectors.submitButtonSelector);
+const inputsNameCard = formCard.querySelectorAll(selectors.inputSelector);
 
 const validatorInfo = new FormValidator(validateSelectors, formEdit);
 const validatorCard = new FormValidator(validateSelectors, formCard);
 validatorInfo.enableValidation();
 validatorCard.enableValidation();
-
-const newUserInfo = new UserInfo({ titleElement: selectors.titleElement, subtitleElement: selectors.subtitleElement });
 
 const editSubmit = new PopupWithForm(selectors.popupElement, selectors.formElementInfo, submitEdit);
 editSubmit.setEventListeners();
@@ -80,44 +67,35 @@ editSubmit.setEventListeners();
 const cardSubmit = new PopupWithForm(selectors.popupElementCard, selectors.formElementrCard, submitCard);
 cardSubmit.setEventListeners();
 
-function createNewCard(name, link) {
-  const cardItem = new Card({ name, link }, selectors, handleClicImgElement);
+function createNewCard(dataItems) {
+  const cardItem = new Card({ data: dataItems, handleCardClick }, selectors);
   return cardItem.generateCard();
 };
 
-const cardsList = new Section({
-  items: initialCards,
-  renderer: (name, link) => {
-    cardsList.addItem(createNewCard(name, link));
-  },
-},
-  selectors.elementElement);
-cardsList.renderItems();
+const section = new Section(selectors.elementElement, (dataItems) => {
+  section.addItem(createNewCard(dataItems));
+})
+section.renderItems(initialCards);
 
+const imgElement = new PopupWithImage(selectors.popupElementImg);
+function handleCardClick(name, link) {
+  imgElement.openImage(name, link);
+};
+
+const newUserInfo = new UserInfo({ titleElement: selectors.titleElement, subtitleElement: selectors.subtitleElement });
 function submitEdit(data) {
   newUserInfo.setUserInfo(data);
-
   editSubmit.close();
 };
 
 function submitCard() {
-  const inputName = [{ name: inputNameCard.value, link: inputDescriptionCard.value }];
+  const formInputObject = {};
+  inputsNameCard.forEach((input) => {
+    formInputObject[input.name] = input.value;
+  })
+  section.addItem(createNewCard(formInputObject));
 
-  const cardsList = new Section({
-    items: inputName,
-    renderer: (name, link) => {
-      cardsList.addItem(createNewCard(name, link));
-    },
-  },
-    selectors.elementElement);
-
-  cardsList.renderItems();
   cardSubmit.close();
-};
-
-const imgElement = new PopupWithImage(selectors.popupElementImg);
-function handleClicImgElement(name, link) {
-  imgElement.openImage(name, link);
 };
 
 const profileEditButton = document.querySelector(selectors.editButton);

@@ -1,4 +1,3 @@
-
 export default class Popup {
   constructor(selectorPopup) {
     this._selectorPopup = selectorPopup;

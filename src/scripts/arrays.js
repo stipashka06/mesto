@@ -7,27 +7,27 @@ export const baikal = new URL('https://pictures.s3.yandex.net/frontend-developer
 
 export const initialCards = [
   {
-    name: 'Архыз',
-    link: arkhyz,
+    cardinfo: 'Архыз',
+    cardurl: arkhyz,
   },
   {
-    name: 'Челябинская область',
-    link: chelyabinskOblast,
+    cardinfo: 'Челябинская область',
+    cardurl: chelyabinskOblast,
   },
   {
-    name: 'Иваново',
-    link: ivanovo,
+    cardinfo: 'Иваново',
+    cardurl: ivanovo,
   },
   {
-    name: 'Камчатка',
-    link: kamchatka,
+    cardinfo: 'Камчатка',
+    cardurl: kamchatka,
   },
   {
-    name: 'Холмогорский район',
-    link: kholmogorskyRayon,
+    cardinfo: 'Холмогорский район',
+    cardurl: kholmogorskyRayon,
   },
   {
-    name: 'Байкал',
-    link: baikal,
+    cardinfo: 'Байкал',
+    cardurl: baikal,
   },
 ];
