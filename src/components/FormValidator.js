@@ -19,7 +19,7 @@ export default class FormValidator {
     this._submitButtonElement.setAttribute('disabled', true);
   };
 
-  _cleanErrorForm() {
+  cleanErrorForm() {
     this._inputElements.forEach((cleanInput) => {
       cleanInput.classList.remove(this._validateSelectors.errorElement);
       cleanInput.classList.remove(this._validateSelectors.errorBorderElement);
@@ -34,7 +34,7 @@ export default class FormValidator {
     return this._arrayInputElements.some((data) => !data.validity.valid);
   };
 
-  _toggleFormSubmit() {
+  toggleFormSubmit() {
     this._isValid() ? this._blockSubmitButtonElement() : this._unlockSubmitButtonElement();
   };
 
@@ -59,7 +59,7 @@ export default class FormValidator {
       valid,
     };
 
-    this._toggleFormSubmit();
+    this.toggleFormSubmit();
     this._setFieldError(elementField, elementError, params, submitButtonElement);
 
     return valid;
@@ -75,6 +75,6 @@ export default class FormValidator {
 
   enableValidation() {
     this._setEventListeners();
-    this._toggleFormSubmit();
+    this.toggleFormSubmit();
   };
 };

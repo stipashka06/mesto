@@ -78,6 +78,9 @@ const section = new Section(selectors.elementElement, (dataItems) => {
 section.renderItems(initialCards);
 
 const imgElement = new PopupWithImage(selectors.popupElementImg);
+imgElement.setEventListeners();
+
+
 function handleCardClick(name, link) {
   imgElement.openImage(name, link);
 };
@@ -89,12 +92,7 @@ function submitEdit(data) {
 };
 
 function submitCard() {
-  const formInputObject = {};
-  inputsNameCard.forEach((input) => {
-    formInputObject[input.name] = input.value;
-  })
-  section.addItem(createNewCard(formInputObject));
-
+  section.addItem(createNewCard(cardSubmit.getInputValues()));
   cardSubmit.close();
 };
 
@@ -103,14 +101,14 @@ profileEditButton.addEventListener('click', () => {
   const dataUser = newUserInfo.getUserInfo();
   inputNameEdit.value = dataUser.username;
   inputDescriptionEdit.value = dataUser.userinfo;
-  validatorInfo._toggleFormSubmit();
-  validatorInfo._cleanErrorForm();
+  validatorInfo.toggleFormSubmit();
+  validatorInfo.cleanErrorForm();
   editSubmit.open();
 });
 
 const profileAddButton = document.querySelector(selectors.addButton);
 profileAddButton.addEventListener('click', () => {
-  validatorCard._toggleFormSubmit();
-  validatorCard._cleanErrorForm();
+  validatorCard.toggleFormSubmit();
+  validatorCard.cleanErrorForm();
   cardSubmit.open();
 });
