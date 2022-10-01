@@ -91,8 +91,8 @@ function submitEdit(data) {
   editSubmit.close();
 };
 
-function submitCard() {
-  section.addItem(createNewCard(cardSubmit.getInputValues()));
+function submitCard(data) {
+  section.addItem(createNewCard(data));
   cardSubmit.close();
 };
 
