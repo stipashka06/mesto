@@ -1,6 +1,5 @@
 import "../pages/index.css";
 import { selectors, validateSelectors } from "../utils/constants.js";
-import { renderLoading } from "../utils/utils.js";
 import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
