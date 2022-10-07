@@ -2,12 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   position: relative;
   width: 282px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
-  padding-bottom: 25px;
   box-sizing: border-box;
   overflow: hidden;
 }

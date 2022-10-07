@@ -11,8 +11,7 @@ export default class UserInfo {
     };
   };
 
-  setUserInfo(data) {
-    this._titleElement.textContent = data.username;
-    this._subtitleElement.textContent = data.userinfo;
+  renderLoading(data) {
+    super.renderLoading(data);
   };
 };

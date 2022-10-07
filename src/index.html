@@ -17,13 +17,16 @@
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="<%=require('./images/profile-avatar.jpg')%>" alt="Жак-Ив Кусто">
+      <div class="profile__background-avatar">
+        <img class="profile__avatar" src="#" alt="Жак-Ив Кусто">
+        <div class="profile__avatar-hover"></div>
+      </div>
       <div class="profile__info">
         <div class="profile__info-title">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <h1 class="profile__title"></h1>
           <button class="profile__edit-button cursor" type="button" aria-label="Редактировать"></button>
         </div>
-        <p class="profile__subtitle">Исследователь океана</p>
+        <p class="profile__subtitle"></p>
       </div>
       <button class="profile__add-button cursor" type="button" aria-label="Добавить"></button>
     </section>
@@ -33,6 +36,20 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
+
+  <div class="popup-fade popup-fade_opacity_medium popup-fade_type_avatar">
+    <div class="popup">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__form popup__form_avatar" name="nameAvatar" novalidate>
+        <span class="popup__input-error popup__input-error_username"></span>
+        <input class="popup__input popup__input_type_description" id="avatarurl" name="avatarurl" type="url" value=""
+          placeholder="Ссылка на картинку" required>
+        <span class="popup__input-error popup__input-error_avatarurl"></span>
+        <button class="popup__submit-button cursor" name="submit" type="submit">Сохранить</button>
+      </form>
+      <button class="close-button cursor" type="button"></button>
+    </div>
+  </div>
 
   <div class="popup-fade popup-fade_opacity_medium popup-fade_type_edit">
     <div class="popup">
@@ -59,11 +76,23 @@
         <input class="popup__input popup__input_type_description" id="cardurl" name="cardurl" type="url" value=""
           placeholder="Ссылка на картинку" required>
         <span class="popup__input-error popup__input-error_cardurl"></span>
-        <button class="popup__submit-button cursor" name="submit" type="submit">Сохранить</button>
+        <button class="popup__submit-button cursor" name="submit" type="submit">Создать</button>
       </form>
       <button class="close-button cursor" type="button"></button>
     </div>
   </div>
+
+  <div class="popup-fade popup-fade_opacity_medium popup-fade_type_delete-card">
+    <div class="popup">
+      <h2 class="popup__title">Вы уверены?</h2>
+      <form class="popup__form popup__form_delete" name="namedelete" novalidate>
+        <span class="popup__input-error popup__input-error_cardurl"></span>
+        <button class="popup__submit-button cursor" name="submit" type="submit">Да</button>
+      </form>
+      <button class="close-button cursor" type="button"></button>
+    </div>
+  </div>
+
   <div class="popup-fade popup-fade_opacity_strong popup-fade_type_img">
     <figure class="popup-figure">
       <img class="popup-figure__image" src="#" alt="#">
@@ -76,7 +105,10 @@
     <article class="element">
       <img class="element__image">
       <h2 class="element__title"></h2>
-      <button class="element__like element__like_type_passive cursor" type="button" aria-label="Like"></button>
+      <div class="element__block-like">
+        <button class="element__like element__like_type_passive cursor" type="button" aria-label="Like"></button>
+        <p class="element__amount-like"></p>
+      </div>
       <button class="element__basket cursor" type="button" aria-label="Удалить"></button>
     </article>
   </template>

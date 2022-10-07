@@ -4,6 +4,7 @@
   height: 24px;
   border: 1px solid rgb(255, 255, 255);
   background: url(../../../images/logo/profile-edit-button.svg) center/10px 10px no-repeat;
+  z-index: 1;
 }
 
 .profile__edit-button:hover {

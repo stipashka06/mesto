@@ -3,6 +3,7 @@ export default class Popup {
     this._selectorPopup = selectorPopup;
     this._popup = document.querySelector(this._selectorPopup);
     this._bodyElement = document.querySelector('.page');
+    this._buttonClose = this._popup.querySelector('.popup__submit-button');
   };
 
   _handleEscClose = (evt) => {
@@ -17,6 +18,30 @@ export default class Popup {
         this.close();
       };
     });
+  };
+
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._buttonClose.textContent = 'Сохранение...'
+    } else {
+      this._buttonClose.textContent = 'Сохранить'
+    };
+  };
+
+  renderLoadingCard(isLoading) {
+    if (isLoading) {
+      this._buttonClose.textContent = 'Сохранение...'
+    } else {
+      this._buttonClose.textContent = 'Создать'
+    };
+  };
+
+  renderDelete(isLoading) {
+    if (isLoading) {
+      this._buttonClose.textContent = 'Удаление...'
+    } else {
+      this._buttonClose.textContent = 'Да'
+    };
   };
 
   open() {
