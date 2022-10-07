@@ -38,7 +38,14 @@ export default class FormValidator {
     this._isValid() ? this._blockSubmitButtonElement() : this._unlockSubmitButtonElement();
   };
 
-  _setFieldError(elementField, elementError, params) {
+  _setFieldError(elementField) {
+    const { validationMessage, validity: { valid } } = elementField;
+    const errorTextContainerSelector = `.popup__input-error_${elementField.name}`;
+    const elementError = this._formElement.querySelector(errorTextContainerSelector);
+    const params = {
+      validationMessage,
+      valid,
+    };
     elementError.textContent = params.validationMessage;
     if (params.valid) {
       elementField.classList.remove(this._validateSelectors.errorElement);
@@ -47,22 +54,13 @@ export default class FormValidator {
       elementField.classList.add(this._validateSelectors.errorElement);
       elementField.classList.add(this._validateSelectors.errorBorderElement);
     };
+
+    return valid;
   };
 
   _checkFieldValidity(elementField) {
-    const { validationMessage, validity: { valid } } = elementField;
-    const submitButtonElement = this._formElement.querySelector(this._validateSelectors.submitButtonSelector);
-    const errorTextContainerSelector = `.popup__input-error_${elementField.name}`;
-    const elementError = this._formElement.querySelector(errorTextContainerSelector);
-    const params = {
-      validationMessage,
-      valid,
-    };
-
     this.toggleFormSubmit();
-    this._setFieldError(elementField, elementError, params, submitButtonElement);
-
-    return valid;
+    this._setFieldError(elementField, this._submitButtonElement);
   };
 
   _setEventListeners() {

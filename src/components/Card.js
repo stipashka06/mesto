@@ -29,22 +29,22 @@ export default class Card {
 
   _udateLike() {
     if (this.compareLikeId()) {
-      this._likeElement.classList.add('element__like_type_active');
+      this._likeElement.classList.add(this._selectors.selectorLikeTemplateActive);
     } else {
-      this._likeElement.classList.remove('element__like_type_active');
+      this._likeElement.classList.remove(this._selectors.selectorLikeTemplateActive);
     };
     this._amountLikeTemplateElement.textContent = this._data?.likes?.length;
   };
 
-  compareOwnerCardId() {
+  _compareOwnerCardId() {
     return this._data.owner._id === this._userId
   };
 
   udateBasket() {
-    if (this.compareOwnerCardId()) {
-      this._basketElement.classList.remove('element__basket_display');
+    if (this._compareOwnerCardId()) {
+      this._basketElement.classList.remove(this._selectors.selectorBasketTemplateElementDisplay);
     } else {
-      this._basketElement.classList.add('element__basket_display');
+      this._basketElement.classList.add(this._selectors.selectorBasketTemplateElementDisplay);
     };
   };
 

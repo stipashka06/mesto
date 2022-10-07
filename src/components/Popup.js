@@ -1,9 +1,9 @@
 export default class Popup {
-  constructor(selectorPopup) {
+  constructor(selectors, selectorPopup) {
+    this._selectors = selectors;
     this._selectorPopup = selectorPopup;
     this._popup = document.querySelector(this._selectorPopup);
-    this._bodyElement = document.querySelector('.page');
-    this._buttonClose = this._popup.querySelector('.popup__submit-button');
+    this._bodyElement = document.querySelector(this._selectors.body);
   };
 
   _handleEscClose = (evt) => {
@@ -14,45 +14,21 @@ export default class Popup {
 
   setEventListeners() {
     this._popup.addEventListener('mousedown', (evt) => {
-      if (evt.target.classList.contains('popup-fade_opened') || evt.target.classList.contains('close-button')) {
+      if (evt.target.classList.contains(this._selectors.selectorPopupOpen) || evt.target.classList.contains(this._selectors.selectorCloseButton)) {
         this.close();
       };
     });
   };
 
-  renderLoading(isLoading) {
-    if (isLoading) {
-      this._buttonClose.textContent = 'Сохранение...'
-    } else {
-      this._buttonClose.textContent = 'Сохранить'
-    };
-  };
-
-  renderLoadingCard(isLoading) {
-    if (isLoading) {
-      this._buttonClose.textContent = 'Сохранение...'
-    } else {
-      this._buttonClose.textContent = 'Создать'
-    };
-  };
-
-  renderDelete(isLoading) {
-    if (isLoading) {
-      this._buttonClose.textContent = 'Удаление...'
-    } else {
-      this._buttonClose.textContent = 'Да'
-    };
-  };
-
   open() {
-    this._popup.classList.add('popup-fade_opened');
-    this._bodyElement.classList.add('page_noscroll');
+    this._popup.classList.add(this._selectors.selectorPopupOpen);
+    this._bodyElement.classList.add(this._selectors.selectorBodyNoScroll);
     document.addEventListener('keydown', this._handleEscClose);
   };
 
   close() {
-    this._popup.classList.remove('popup-fade_opened');
-    this._bodyElement.classList.remove('page_noscroll');
+    this._popup.classList.remove(this._selectors.selectorPopupOpen);
+    this._bodyElement.classList.remove(this._selectors.selectorBodyNoScroll);
     document.removeEventListener('keydown', this._handleEscClose);
   };
 };
