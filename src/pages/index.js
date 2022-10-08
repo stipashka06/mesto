@@ -1,5 +1,5 @@
 import "../pages/index.css";
-import { selectors, validateSelectors } from "../utils/constants.js";
+import { selectors, validateSelectors, textButton } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -92,7 +92,7 @@ function createNewCard(dataItems) {
     },
     handleDeleteCardClick: (element) => {
       cardInfoSubmit.setSubmitAction(() => {
-        cardInfoSubmit.renderLoading(true, { textBefore: 'Удаление...', texrAfter: 'Да' });
+        cardInfoSubmit.renderLoading(true, { textBefore: textButton.removal, texrAfter: textButton.yes });
         api.deleteCard(element.getId())
           .then(() => {
             element.removeCard();
@@ -102,7 +102,7 @@ function createNewCard(dataItems) {
             console.log(`Можно удалять только собственные посты ${err}`);
           })
           .finally(() => {
-            cardInfoSubmit.renderLoading(false, { textBefore: 'Удаление...', texrAfter: 'Да' });
+            cardInfoSubmit.renderLoading(false, { textBefore: textButton.removal, texrAfter: textButton.yes });
           });
       });
       cardInfoSubmit.open();
@@ -113,7 +113,7 @@ function createNewCard(dataItems) {
 }
 
 function submitAvatar(data) {
-  avatarElement.renderLoading(true, { textBefore: 'Сохранение...', texrAfter: 'Сохранение' });
+  avatarElement.renderLoading(true, { textBefore: textButton.preservation, texrAfter: textButton.save });
   api.getAvatar(data)
     .then((data) => {
       avatarProfile.src = data.avatar;
@@ -123,7 +123,7 @@ function submitAvatar(data) {
       console.log(`Ошибка получения данных пользователя на аватар ${err}`);
     })
     .finally(() => {
-      avatarElement.renderLoading(false, { textBefore: 'Сохранение...', texrAfter: 'Сохранение' });
+      avatarElement.renderLoading(false, { textBefore: textButton.preservation, texrAfter: textButton.save });
     });
 };
 
@@ -133,7 +133,7 @@ const newUserInfo = new UserInfo({
 }, selectors);
 
 function submitEdit(data) {
-  editElement.renderLoading(true, { textBefore: 'Сохранение...', texrAfter: 'Сохранение' });
+  editElement.renderLoading(true, { textBefore: textButton.preservation, texrAfter: textButton.save });
   api.gatUserData(data)
     .then((data) => {
       titleElement.textContent = data.name;
@@ -144,12 +144,12 @@ function submitEdit(data) {
       console.log(`Ошибка получения данных пользователя ${err}`);
     })
     .finally(() => {
-      editElement.renderLoading(false, { textBefore: 'Сохранение...', texrAfter: 'Сохранение' });
+      editElement.renderLoading(false, { textBefore: textButton.preservation, texrAfter: textButton.save });
     });
 };
 
 function submitCard(data) {
-  cardElement.renderLoading(true, { textBefore: 'Сохранение...', texrAfter: 'Создать' });
+  cardElement.renderLoading(true, { textBefore: textButton.preservation, texrAfter: textButton.create });
   api.getNewCard(data)
     .then((data) => {
       section.addItem(createNewCard(data));
@@ -159,7 +159,7 @@ function submitCard(data) {
       console.log(`Ошибка добавления карточки ${err}`);
     })
     .finally(() => {
-      cardElement.renderLoading(false, { textBefore: 'Сохранение...', texrAfter: 'Создать' });
+      cardElement.renderLoading(false, { textBefore: textButton.preservation, texrAfter: textButton.create });
     });
   cardElement.setEventListeners();
 };
@@ -167,8 +167,8 @@ function submitCard(data) {
 const avatarHoverElement = document.querySelector(selectors.avatarHoverElement);
 
 avatarHoverElement.addEventListener("click", () => {
-  inputDescriptionAvatar.value = "";
   validatorAvatar.toggleFormSubmit();
+  inputDescriptionAvatar.value = "";
   validatorAvatar.cleanErrorForm();
   avatarElement.open();
 });
@@ -177,7 +177,8 @@ const profileEditButton = document.querySelector(selectors.editButton);
 
 profileEditButton.addEventListener("click", () => {
   const dataUser = newUserInfo.getUserInfo();
-  newUserInfo.setUserInfo(dataUser)
+  inputNameEdit.value = dataUser.username;
+  inputDescriptionEdit.value = dataUser.userinfo;
   validatorInfo.toggleFormSubmit();
   validatorInfo.cleanErrorForm();
   editElement.open();

@@ -17,11 +17,7 @@ export default class UserInfo {
   };
 
   setUserInfo = (data) => {
-    this._inputNameEdit.value = data.username;
-    this._inputDescriptionEdit.value = data.userinfo;
-  };
-
-  renderLoading(data) {
-    super.renderLoading(data);
+    this._titleElement.textContent = data.username;
+    this._subtitleElement.textContent = data.userinfo;
   };
 };

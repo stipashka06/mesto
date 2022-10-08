@@ -59,3 +59,11 @@ export const selectors = {
   selectorBasketTemplateElementDisplay: 'element__basket_display',
   submitButton: '.popup__submit-button',
 };
+
+export const textButton = {
+  save: 'Сохранить',
+  preservation: 'Сохранение...',
+  create: 'Создать',
+  removal: 'Удаление...',
+  yes: 'Да',
+};

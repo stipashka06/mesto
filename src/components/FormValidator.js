@@ -35,19 +35,16 @@ export default class FormValidator {
   };
 
   toggleFormSubmit() {
-    this._isValid() ? this._blockSubmitButtonElement() : this._unlockSubmitButtonElement();
+    return this._isValid() ? this._blockSubmitButtonElement() : this._unlockSubmitButtonElement();
   };
 
   _setFieldError(elementField) {
     const { validationMessage, validity: { valid } } = elementField;
     const errorTextContainerSelector = `.popup__input-error_${elementField.name}`;
     const elementError = this._formElement.querySelector(errorTextContainerSelector);
-    const params = {
-      validationMessage,
-      valid,
-    };
-    elementError.textContent = params.validationMessage;
-    if (params.valid) {
+
+    elementError.textContent = validationMessage;
+    if (valid) {
       elementField.classList.remove(this._validateSelectors.errorElement);
       elementField.classList.remove(this._validateSelectors.errorBorderElement);
     } else {
@@ -60,7 +57,7 @@ export default class FormValidator {
 
   _checkFieldValidity(elementField) {
     this.toggleFormSubmit();
-    this._setFieldError(elementField, this._submitButtonElement);
+    this._setFieldError(elementField);
   };
 
   _setEventListeners() {
