@@ -42,9 +42,7 @@ let userId = null;
 api.getAllInfo()
   .then(([userData, cards]) => {
     userId = userData._id;
-    avatarProfile.src = userData.avatar;
-    titleElement.textContent = userData.name;
-    buttonAvatarInfoSubmit.textContent = userData.about;
+    newUserInfo.setUserInfo(userData);
     section.renderItems(cards.reverse());
   })
   .catch((err) => {
@@ -116,7 +114,7 @@ function submitAvatar(data) {
   avatarElement.renderLoading(true, { textBefore: textButton.preservation, texrAfter: textButton.save });
   api.getAvatar(data)
     .then((data) => {
-      avatarProfile.src = data.avatar;
+      newUserInfo.setUserInfo(data);
       avatarElement.close();
     })
     .catch((err) => {
@@ -128,6 +126,7 @@ function submitAvatar(data) {
 };
 
 const newUserInfo = new UserInfo({
+  avatarProfile: selectors.avatarProfile,
   titleElement: selectors.titleElement,
   subtitleElement: selectors.subtitleElement,
 }, selectors);
@@ -136,8 +135,7 @@ function submitEdit(data) {
   editElement.renderLoading(true, { textBefore: textButton.preservation, texrAfter: textButton.save });
   api.gatUserData(data)
     .then((data) => {
-      titleElement.textContent = data.name;
-      buttonAvatarInfoSubmit.textContent = data.about;
+      newUserInfo.setUserInfo(data);
       editElement.close();
     })
     .catch((err) => {
